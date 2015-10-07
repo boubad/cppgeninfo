@@ -156,6 +156,7 @@
     <ClInclude Include="etudiantevent.h" />
     <ClInclude Include="gendefs.h" />
     <ClInclude Include="geninfo_exception.h" />
+    <ClInclude Include="genninfoconstants.h" />
     <ClInclude Include="genutils.h" />
     <ClInclude Include="groupe.h" />
     <ClInclude Include="groupeevent.h" />
@@ -181,6 +182,7 @@
     <ClCompile Include="departement.cpp" />
     <ClCompile Include="depperson.cpp" />
     <ClCompile Include="etudiantevent.cpp" />
+    <ClCompile Include="geninfoconstants.cpp" />
     <ClCompile Include="genutils.cpp" />
     <ClCompile Include="groupe.cpp" />
     <ClCompile Include="groupeevent.cpp" />
