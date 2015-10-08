@@ -34,7 +34,7 @@ namespace geninfo {
 	RootObject::~RootObject()
 	{
 	}
-	string RootObject::toString(void) const {
+	string RootObject::to_string(void) const {
 		string oRet;
 		if (!this->m_obj.empty()) {
 			oRet = json_spirit::write(this->m_obj, json_spirit::Output_options::pretty_print);

@@ -24,7 +24,7 @@ namespace geninfo {
 			return (this->m_obj);
 		}
 	public:
-		string toString(void) const;
+		string to_string(void) const;
 		ostream & write_to(ostream &os) const;
 	public:
 		bool is_empty(void) const;
