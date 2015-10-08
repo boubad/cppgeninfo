@@ -11,11 +11,6 @@ namespace geninfo {
 	class Matiere : public SigleNamedItem
 	{
 	public:
-		static const string_t MATIERE_TYPE;
-		static const string_t MATIERE_THEORIE;
-		static const string_t MATIERE_PRATIQUE;
-	public:
-	public:
 		Matiere();
 		Matiere(const Unite &oUnite);
 		Matiere(const value &oMap);

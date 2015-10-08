@@ -3,20 +3,11 @@
 #include "IDatabaseManager.h"
 #include "departement.h"
 #include "couchdoc.h"
+#include "couchconstants.h"
+#include "genninfoconstants.h"
 /////////////////////////////
 namespace geninfo {
 	////////////////////////////////////////
-	const string_t STRING_STATUS = U("status");
-	const string_t STRING_DESCRIPTION = U("description");
-	const string_t STRING_NAME = U("name");
-	const string_t STRING_SIGLE = U("sigle");
-	const string_t STRING_DELETED = U("_deleted");
-	const string_t STRING_DEPARTEMENTID = U("departementid");
-	const string_t STRING_STARTDATE = U("startdate");
-	const string_t STRING_ENDDATE = U("enddate");
-	////////////////////////////////////
-	const string_t BaseItem::TYPE_KEY(U("type"));
-	/////////////////////////////////////////
 	BaseItem::BaseItem()
 	{
 	}
@@ -60,23 +51,23 @@ namespace geninfo {
 	}
 	string_t BaseItem::status(void) const {
 		string_t sRet;
-		if (this->has_field(STRING_STATUS)) {
-			sRet = (this->get_value_at(STRING_STATUS)).as_string();
+		if (this->has_field(GenInfoConstants::STATUS)) {
+			sRet = (this->get_value_at(GenInfoConstants::STATUS)).as_string();
 		}
 		return sRet;
 	}
 	void BaseItem::status(const string_t &s) {
-		this->set_string(STRING_STATUS, trim(s));
+		this->set_string(GenInfoConstants::STATUS, trim(s));
 	}
 	string_t BaseItem::description(void) const {
 		string_t sRet;
-		if (this->has_field(STRING_DESCRIPTION)) {
-			sRet = (this->get_value_at(STRING_DESCRIPTION)).as_string();
+		if (this->has_field(GenInfoConstants::DESCRIPTION)) {
+			sRet = (this->get_value_at(GenInfoConstants::DESCRIPTION)).as_string();
 		}
 		return sRet;
 	}
 	void BaseItem::description(const string_t &s) {
-		this->set_string(STRING_DESCRIPTION, trim(s));
+		this->set_string(GenInfoConstants::DESCRIPTION, trim(s));
 	}
 	string_t BaseItem::create_id(void) const {
 		return string_t();
@@ -106,7 +97,7 @@ namespace geninfo {
 				bRet = rsp.ok();
 				if (bRet) {
 					value &v = this->get_value();
-					v[STRING_DELETED] = value::boolean(true);
+					v[GenInfoConstants::DELETED] = value::boolean(true);
 				}
 			}
 			catch (std::exception &ex) {
@@ -136,8 +127,8 @@ namespace geninfo {
 	}
 	string_t NamedItem::name(void) const {
 		string_t sRet;
-		if (this->has_field(STRING_NAME)) {
-			sRet = (this->get_value_at(STRING_NAME)).as_string();
+		if (this->has_field(GenInfoConstants::NAME)) {
+			sRet = (this->get_value_at(GenInfoConstants::NAME)).as_string();
 		}
 		return sRet;
 	}
@@ -149,7 +140,7 @@ namespace geninfo {
 		else {
 			ss = to_upper(s);
 		}
-		this->set_string(STRING_NAME, ss);
+		this->set_string(GenInfoConstants::NAME, ss);
 	}
 	bool NamedItem::is_storeable(void) const {
 		string_t s = this->name();
@@ -176,14 +167,14 @@ namespace geninfo {
 	}
 	string_t SigleNamedItem::sigle(void) const {
 		string_t sRet;
-		if (this->has_field(STRING_SIGLE)) {
-			sRet = (this->get_value_at(STRING_SIGLE)).as_string();
+		if (this->has_field(GenInfoConstants::SIGLE)) {
+			sRet = (this->get_value_at(GenInfoConstants::SIGLE)).as_string();
 		}
 		return sRet;
 	}
 	void SigleNamedItem::sigle(const string_t &s) {
 		string_t ss = to_upper(trim(s));
-		this->set_string(STRING_SIGLE, ss);
+		this->set_string(GenInfoConstants::SIGLE, ss);
 	}
 	bool SigleNamedItem::is_storeable(void) const {
 		string_t s = this->sigle();
@@ -214,13 +205,13 @@ namespace geninfo {
 	}
 	string_t DepSigleNamedItem::departementid(void) const {
 		string_t sRet;
-		if (this->has_field(STRING_DEPARTEMENTID)) {
-			sRet = (this->get_value_at(STRING_DEPARTEMENTID)).as_string();
+		if (this->has_field(GenInfoConstants::DEPARTEMENTID)) {
+			sRet = (this->get_value_at(GenInfoConstants::DEPARTEMENTID)).as_string();
 		}
 		return sRet;
 	}
 	void DepSigleNamedItem::departementid(const string_t &s) {
-		this->set_string(STRING_DEPARTEMENTID, s);
+		this->set_string(GenInfoConstants::DEPARTEMENTID, s);
 	}
 	bool DepSigleNamedItem::is_storeable(void) const {
 		string_t s = this->departementid();

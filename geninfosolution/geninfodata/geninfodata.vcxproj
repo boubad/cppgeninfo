@@ -70,16 +70,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\VS2015\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\VS2015\include;C:\VS2015\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\VS2015\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\VS2015\include;C:\VS2015\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\VS2015\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\VS2015\include;C:\VS2015\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\VS2015\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\VS2015\include;C:\VS2015\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -116,6 +116,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalOptions>-Zm232 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -133,6 +134,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalOptions>-Zm232 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -148,6 +150,7 @@
     <ClInclude Include="affectation.h" />
     <ClInclude Include="annee.h" />
     <ClInclude Include="baseitem.h" />
+    <ClInclude Include="couchconstants.h" />
     <ClInclude Include="couchdatamanager.h" />
     <ClInclude Include="couchdbmanager.h" />
     <ClInclude Include="couchdoc.h" />
@@ -176,6 +179,7 @@
     <ClCompile Include="affectation.cpp" />
     <ClCompile Include="annee.cpp" />
     <ClCompile Include="baseitem.cpp" />
+    <ClCompile Include="couchconstants.cpp" />
     <ClCompile Include="couchdatamanager.cpp" />
     <ClCompile Include="couchdbmanager.cpp" />
     <ClCompile Include="couchdoc.cpp" />

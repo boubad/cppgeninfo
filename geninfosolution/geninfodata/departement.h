@@ -12,7 +12,6 @@ namespace geninfo {
 	class Departement : public SigleNamedItem
 	{
 	public:
-		static const string_t DEPARTEMENT_TYPE;
 		static pplx::task<std::vector<std::shared_ptr<Departement>>> get_all_departements(IDatabaseManager &oMan);
 	public:
 		Departement();

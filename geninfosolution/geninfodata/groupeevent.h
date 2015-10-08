@@ -14,7 +14,6 @@ namespace geninfo {
 	class GroupeEvent : public PersonItem
 	{
 	public:
-		static const string_t GROUPEEVENT_TYPE;
 		static pplx::task<std::vector<std::shared_ptr<GroupeEvent>>> get_semestre_groupeevents(IDatabaseManager &oMan, const Semestre &oSem);
 		static pplx::task<std::vector<std::shared_ptr<GroupeEvent>>> get_semestre_matiere_groupeevents(IDatabaseManager &oMan, const Semestre &oSem, const Matiere &oMat);
 	public:

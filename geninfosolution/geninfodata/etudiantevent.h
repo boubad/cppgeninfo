@@ -12,8 +12,6 @@ namespace geninfo {
 	class EtudiantEvent : public PersonItem
 	{
 	public:
-		static const string_t ETUDIANTEVENT_TYPE;
-	public:
 		EtudiantEvent();
 		EtudiantEvent(const GroupeEvent &gvt, const EtudiantAffectation &oAff);
 		EtudiantEvent(const value &oMap);

@@ -4,20 +4,17 @@
 #include "groupe.h"
 #include "unite.h"
 #include "IDatabaseManager.h"
+#include "genninfoconstants.h"
 //////////////////////////////////
 namespace geninfo {
 	//////////////////////////////////////
-	const string_t Departement::DEPARTEMENT_TYPE(U("departement"));
-	//
-	const string_t DEPARTEMENT_PREFIX = U("DEP");
-	////////////////////////////////////////
 	Departement::Departement()
 	{
-		this->set_string(BaseItem::TYPE_KEY, Departement::DEPARTEMENT_TYPE);
+		this->set_string(GenInfoConstants::TYPE, GenInfoConstants::DEPARTEMENT_TYPE);
 	}
 	Departement::Departement(const value &oMap) :SigleNamedItem(oMap)
 	{
-		this->set_string(BaseItem::TYPE_KEY, Departement::DEPARTEMENT_TYPE);
+		this->set_string(GenInfoConstants::TYPE, GenInfoConstants::DEPARTEMENT_TYPE);
 	}
 	Departement::Departement(const Departement &other) : SigleNamedItem(other)
 	{
@@ -33,10 +30,10 @@ namespace geninfo {
 	{
 	}
 	string_t Departement::type(void) const {
-		return DEPARTEMENT_TYPE;
+		return GenInfoConstants::DEPARTEMENT_TYPE;
 	}
 	string_t Departement::store_prefix(void) const {
-		return DEPARTEMENT_PREFIX;
+		return GenInfoConstants::DEPARTEMENT_PREFIX;
 	}
 	pplx::task<std::vector<std::shared_ptr<Departement>>> Departement::get_all_departements(IDatabaseManager &oMan) {
 		Departement oDep;

@@ -10,8 +10,6 @@ namespace geninfo {
 	class Annee : public DepSigleNamedItem
 	{
 	public:
-		static const string_t ANNEE_TYPE;
-	public:
 		Annee();
 		Annee(const Departement &oDep);
 		Annee(const value &oMap);

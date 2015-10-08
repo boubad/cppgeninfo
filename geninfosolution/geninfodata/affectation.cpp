@@ -7,28 +7,15 @@
 #include "matiere.h"
 #include "depperson.h"
 #include "IDatabaseManager.h"
+#include "genninfoconstants.h"
 ////////////////////////////////
 namespace geninfo {
 	//////////////////////////////
-	const string_t STRING_GROUPEID = U("groupeid");
-	const string_t STRING_SEMESTREID = U("semestreid");
-	const string_t STRING_STARTDATE = U("startdate");
-	const string_t STRING_ENDDATE = U("groupeid");
-	//
-	const string_t EnseignantAffectation::ENSEIGNANTAFFECTATION_TYPE(U("enseignantaffectation"));
-	const string_t ENSEIGNANTAFFECTATION_PREFIX = U("AFP");
-	const string_t STRING_MATIEREID = U("matiereid");
-	const string_t STRING_ENSEIGNANTID = U("enseignantid");
-	//
-	const string_t EtudiantAffectation::ETUDIANTAFFECTATION_TYPE(U("etudiantaffectation"));
-	const string_t ETUDIANTAFFECTATION_PREFIX = U("AFE");
-	const string_t STRING_ETUDIANTID = U("etudiantid");
-	///////////////////////////////////////////////
 	EtudiantAffectation::EtudiantAffectation() {
-		this->set_string(BaseItem::TYPE_KEY, ETUDIANTAFFECTATION_TYPE);
+		this->set_string(GenInfoConstants::TYPE, GenInfoConstants::ETUDIANTAFFECTATION_TYPE);
 	}
 	EtudiantAffectation::EtudiantAffectation(const Etudiant &oEtud, const Semestre &oSem, const Groupe &oGroupe) :Affectation(oSem, oGroupe) {
-		this->set_string(BaseItem::TYPE_KEY, ETUDIANTAFFECTATION_TYPE);
+		this->set_string(GenInfoConstants::TYPE, GenInfoConstants::ETUDIANTAFFECTATION_TYPE);
 		this->personid(oEtud.personid());
 		this->etudiantid(oEtud.id());
 	}
@@ -49,13 +36,13 @@ namespace geninfo {
 	}
 	string_t EtudiantAffectation::etudiantid(void) const {
 		string_t sRet;
-		if (this->has_field(STRING_ETUDIANTID)) {
-			sRet = (this->get_value_at(STRING_ETUDIANTID)).as_string();
+		if (this->has_field(GenInfoConstants::ETUDIANTID)) {
+			sRet = (this->get_value_at(GenInfoConstants::ETUDIANTID)).as_string();
 		}
 		return sRet;
 	}
 	void EtudiantAffectation::etudiantid(const string_t &s) {
-		this->set_string(STRING_ETUDIANTID, s);
+		this->set_string(GenInfoConstants::ETUDIANTID, s);
 	}
 	pplx::task<std::shared_ptr<Etudiant> > EtudiantAffectation::get_etudiant(IDatabaseManager &oMan) const {
 		string_t id = this->etudiantid();
@@ -67,10 +54,10 @@ namespace geninfo {
 		return (!id.empty()) && Affectation::is_storeable();
 	}
 	string_t EtudiantAffectation::type(void) const {
-		return ETUDIANTAFFECTATION_TYPE;
+		return GenInfoConstants::ETUDIANTAFFECTATION_TYPE;
 	}
 	string_t EtudiantAffectation::store_prefix(void) const {
-		return ETUDIANTAFFECTATION_PREFIX;
+		return GenInfoConstants::ETUDIANTAFFECTATION_PREFIX;
 	}
 	string_t EtudiantAffectation::start_key(void) const {
 		string_t s1 = Affectation::start_key();
@@ -94,16 +81,16 @@ namespace geninfo {
 	}
 	///////////////////////////////////////////
 	EnseignantAffectation::EnseignantAffectation() {
-		this->set_string(BaseItem::TYPE_KEY, ENSEIGNANTAFFECTATION_TYPE);
+		this->set_string(GenInfoConstants::TYPE, GenInfoConstants::ENSEIGNANTAFFECTATION_TYPE);
 	}
 	EnseignantAffectation::EnseignantAffectation(const Enseignant &oProf, const Matiere &oMat, const Semestre &oSem, const Groupe &oGroupe) :Affectation(oSem, oGroupe) {
 		this->personid(oProf.personid());
 		this->enseignantid(oProf.id());
 		this->matiereid(oMat.id());
-		this->set_string(BaseItem::TYPE_KEY, ENSEIGNANTAFFECTATION_TYPE);
+		this->set_string(GenInfoConstants::TYPE, GenInfoConstants::ENSEIGNANTAFFECTATION_TYPE);
 	}
 	EnseignantAffectation::EnseignantAffectation(const value &oMap) :Affectation(oMap) {
-		this->set_string(BaseItem::TYPE_KEY, ENSEIGNANTAFFECTATION_TYPE);
+		this->set_string(GenInfoConstants::TYPE, GenInfoConstants::ENSEIGNANTAFFECTATION_TYPE);
 	}
 	EnseignantAffectation::EnseignantAffectation(const EnseignantAffectation &other) : Affectation(other) {
 
@@ -119,23 +106,23 @@ namespace geninfo {
 	}
 	string_t EnseignantAffectation::enseignantid(void) const {
 		string_t sRet;
-		if (this->has_field(STRING_ENSEIGNANTID)) {
-			sRet = (this->get_value_at(STRING_ENSEIGNANTID)).as_string();
+		if (this->has_field(GenInfoConstants::ENSEIGNANTID)) {
+			sRet = (this->get_value_at(GenInfoConstants::ENSEIGNANTID)).as_string();
 		}
 		return sRet;
 	}
 	void EnseignantAffectation::enseignantid(const string_t &s) {
-		this->set_string(STRING_ENSEIGNANTID, s);
+		this->set_string(GenInfoConstants::ENSEIGNANTID, s);
 	}
 	string_t EnseignantAffectation::matiereid(void) const {
 		string_t sRet;
-		if (this->has_field(STRING_MATIEREID)) {
-			sRet = (this->get_value_at(STRING_MATIEREID)).as_string();
+		if (this->has_field(GenInfoConstants::MATIEREID)) {
+			sRet = (this->get_value_at(GenInfoConstants::MATIEREID)).as_string();
 		}
 		return sRet;
 	}
 	void EnseignantAffectation::matiereid(const string_t &s) {
-		this->set_string(STRING_MATIEREID, s);
+		this->set_string(GenInfoConstants::MATIEREID, s);
 	}
 	pplx::task<std::shared_ptr<Enseignant> > EnseignantAffectation::get_enseignant(IDatabaseManager &oMan) const {
 		string_t id = this->enseignantid();
@@ -153,10 +140,10 @@ namespace geninfo {
 		return (!s1.empty()) && (!s2.empty()) && Affectation::is_storeable();
 	}
 	string_t EnseignantAffectation::type(void) const {
-		return ENSEIGNANTAFFECTATION_TYPE;
+		return GenInfoConstants::ENSEIGNANTAFFECTATION_TYPE;
 	}
 	string_t EnseignantAffectation::store_prefix(void) const {
-		return ENSEIGNANTAFFECTATION_PREFIX;
+		return GenInfoConstants::ENSEIGNANTAFFECTATION_PREFIX;
 	}
 	string_t EnseignantAffectation::start_key(void) const {
 		string_t s1 = Affectation::start_key();
@@ -226,45 +213,45 @@ namespace geninfo {
 	}
 	string_t Affectation::semestreid(void) const {
 		string_t sRet;
-		if (this->has_field(STRING_SEMESTREID)) {
-			sRet = (this->get_value_at(STRING_SEMESTREID)).as_string();
+		if (this->has_field(GenInfoConstants::SEMESTREID)) {
+			sRet = (this->get_value_at(GenInfoConstants::SEMESTREID)).as_string();
 		}
 		return sRet;
 	}
 	void Affectation::semestreid(const string_t &s) {
-		this->set_string(STRING_SEMESTREID, s);
+		this->set_string(GenInfoConstants::SEMESTREID, s);
 	}
 	string_t Affectation::groupeid(void) const {
 		string_t sRet;
-		if (this->has_field(STRING_GROUPEID)) {
-			sRet = (this->get_value_at(STRING_GROUPEID)).as_string();
+		if (this->has_field(GenInfoConstants::GROUPEID)) {
+			sRet = (this->get_value_at(GenInfoConstants::GROUPEID)).as_string();
 		}
 		return sRet;
 	}
 	void Affectation::groupeid(const string_t &s) {
-		this->set_string(STRING_GROUPEID, s);
+		this->set_string(GenInfoConstants::GROUPEID, s);
 	}
 	Date Affectation::start_date(void) const {
 		Date dRet;
-		if (this->has_field(STRING_STARTDATE)) {
-			value v = this->get_value_at(STRING_STARTDATE);
+		if (this->has_field(GenInfoConstants::STARTDATE)) {
+			value v = this->get_value_at(GenInfoConstants::STARTDATE);
 			dRet = value_to_date(v);
 		}
 		return dRet;
 	}
 	void Affectation::start_date(Date d) {
-		this->set_value_at(STRING_STARTDATE, date_to_value(d));
+		this->set_value_at(GenInfoConstants::STARTDATE, date_to_value(d));
 	}
 	Date Affectation::end_date(void) const {
 		Date dRet;
-		if (this->has_field(STRING_ENDDATE)) {
-			value v = this->get_value_at(STRING_ENDDATE);
+		if (this->has_field(GenInfoConstants::ENDDATE)) {
+			value v = this->get_value_at(GenInfoConstants::ENDDATE);
 			dRet = value_to_date(v);
 		}
 		return dRet;
 	}
 	void Affectation::end_date(Date d) {
-		this->set_value_at(STRING_ENDDATE, date_to_value(d));
+		this->set_value_at(GenInfoConstants::ENDDATE, date_to_value(d));
 	}
 	pplx::task<std::shared_ptr<Semestre> > Affectation::get_semestre(IDatabaseManager &oMan) const {
 		string_t id = this->semestreid();

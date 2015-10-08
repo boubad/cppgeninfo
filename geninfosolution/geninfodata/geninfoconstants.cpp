@@ -1,27 +1,113 @@
 #include "stdafx.h"
 #include "genninfoconstants.h"
 namespace geninfo {
-	///////////////////////////////////////////
-	const string_t GenInfoConstants::QUESTION_STRING(U("?"));
-	const string_t GenInfoConstants::AND_STRING(U("&"));
-	const string_t GenInfoConstants::QUOTE_STRING(U("\""));
-	//
-	const string_t GenInfoConstants::COMMITTED_UPDATE_SEQ(U("committed_update_seq"));
-	const string_t GenInfoConstants::COMPACT_RUNNING(U("compact_running"));
-	const string_t GenInfoConstants::DB_NAME(U("db_name"));
-	const string_t GenInfoConstants::DISK_FORMAT_VERSION(U("disk_format_version"));
-	const string_t GenInfoConstants::DATA_SIZE(U("data_size"));
-	const string_t GenInfoConstants::DISK_SIZE(U("disk_size"));
-	const string_t GenInfoConstants::DOC_COUNT(U("doc_count"));
-	const string_t GenInfoConstants::DOC_DEL_COUNT(U("doc_del_count"));
-	const string_t GenInfoConstants::INSTANCE_START_TIME(U("instance_start_time"));
-	const string_t GenInfoConstants::PURGE_SEQ(U("purge_seq"));
-	const string_t GenInfoConstants::UPDATE_SEQ(U("update_seq"));
-	/////////////////////////////////////////////////
+	/////////////////////////////////////////////
 	const string_t GenInfoConstants::TYPE(U("type"));
 	const string_t GenInfoConstants::ID(U("_id"));
 	const string_t GenInfoConstants::REV(U("_rev"));
+	const string_t GenInfoConstants::DELETED(U("_deleted"));
 	const string_t GenInfoConstants::STATUS(U("status"));
 	const string_t GenInfoConstants::DESCRIPTION(U("description"));
 	///////////////////////////////////////////////////
+	 const string_t GenInfoConstants::SIGLE(U("sigle"));
+	 const string_t GenInfoConstants::NAME(U("name"));
+	 const string_t GenInfoConstants::ORDER(U("ordre"));
+	 const string_t GenInfoConstants::GENRE(U("genre"));
+	 const string_t GenInfoConstants::CHILDRENIDS(U("childrenids"));
+	 const string_t GenInfoConstants::STARTDATE(U("startdate"));
+	 const string_t GenInfoConstants::ENDDATE(U("enddate"));
+	 const string_t GenInfoConstants::MODULE(U("module"));
+	 const string_t GenInfoConstants::COEFFICIENT(U("coefficient"));
+	 const string_t GenInfoConstants::ECS(U("ecs"));
+	 const string_t GenInfoConstants::DEPARTEMENTID(U("departementid"));
+	 const string_t GenInfoConstants::UNITEID(U("uniteid"));
+	 const string_t GenInfoConstants::ANNEEID(U("anneeid"));
+	 const string_t GenInfoConstants::MATIEREID(U("matiereid"));
+	 const string_t GenInfoConstants::SEMESTREID(U("semestreid"));
+	 const string_t GenInfoConstants::GROUPEID(U("groupeid"));
+	 const string_t GenInfoConstants::ENSEIGNANTID(U("enseignantid"));
+	 const string_t GenInfoConstants::ETUDIANTID(U("etudiantid"));
+	 const string_t GenInfoConstants::ENSEIGNANTAFFECTATIONID(U("enseignantaffectationid"));
+	 const string_t GenInfoConstants::ETUDIANTAFFECTATIONID(U("etudiantaffectationid"));
+	 const string_t GenInfoConstants::GROUPEEVENTID(U("groupeeventid"));
+	 const string_t GenInfoConstants::LOCATION(U("location"));
+	 const string_t GenInfoConstants::STARTTIME(U("starttime"));
+	 const string_t GenInfoConstants::ENDTIME(U("endtime"));
+	 const string_t GenInfoConstants::MINNOTE(U("minnote"));
+	 const string_t GenInfoConstants::MAXNOTE(U("maxnote"));
+	 const string_t GenInfoConstants::NOTE(U("note"));
+	 const string_t GenInfoConstants::USERNAME(U("username"));
+	 const string_t GenInfoConstants::PASSWORD(U("password"));
+	 const string_t GenInfoConstants::FIRSTNAME(U("firstname"));
+	 const string_t GenInfoConstants::LASTNAME(U("lastname"));
+	 const string_t GenInfoConstants::EMAIL(U("email"));
+	 const string_t GenInfoConstants::PHONE(U("phone"));
+	 const string_t GenInfoConstants::DOSSIER(U("dossier"));
+	 const string_t GenInfoConstants::SEXE(U("sexe"));
+	 const string_t GenInfoConstants::BIRTHDATE(U("birthdate"));
+	 const string_t GenInfoConstants::VILLE(U("ville"));
+	 const string_t GenInfoConstants::ETABLISSEMENT(U("etablissement"));
+	 const string_t GenInfoConstants::SERIEBAC(U("seriebac"));
+	 const string_t GenInfoConstants::OPTIONBAC(U("optionbac"));
+	 const string_t GenInfoConstants::MENTIONBAC(U("mentionbac"));
+	 const string_t GenInfoConstants::ETUDESSUPERIEURES(U("etudessuperieures"));
+	 const string_t GenInfoConstants::APB(U("apb"));
+	 const string_t GenInfoConstants::REDOUBLANT(U("redoublant"));
+	//
+	 const string_t GenInfoConstants::DEPARTEMENTSIDS(U("departementids"));
+	 const string_t GenInfoConstants::UNITESIDS(U("unitesids"));
+	 const string_t GenInfoConstants::ANNEESIDS(U("anneesids"));
+	 const string_t GenInfoConstants::SEMESTRESIDS(U("semestresids"));
+	 const string_t GenInfoConstants::MATIERESIDS(U("matieresids"));
+	 const string_t GenInfoConstants::AFFECTATIONSIDS(U("affectationsids"));
+	 const string_t GenInfoConstants::EVENTSIDS(U("eventsids"));
+	 const string_t GenInfoConstants::ADMINISTRATORSIDS(U("administratorsids"));
+	 const string_t GenInfoConstants::ENSEIGNANTSIDS(U("enseignantsids"));
+	 const string_t GenInfoConstants::ETUDIANTSIDS(U("etudiantsids"));
+	 const string_t GenInfoConstants::GROUPESIDS(U("groupesids"));
+	//
+	 const string_t GenInfoConstants::GENRE_PROMO(U("PROMO"));
+	 const string_t GenInfoConstants::GENRE_TD(U("TD"));
+	 const string_t GenInfoConstants::GENRE_TP(U("TP"));
+	 const string_t GenInfoConstants::GENRE_PRATIQUE(U("PRATIQUE"));
+	 const string_t GenInfoConstants::GENRE_THEORIE(U("THEORIE"));
+	 const string_t GenInfoConstants::GENRE_ABSENCE(U("ABS"));
+	 const string_t GenInfoConstants::GENRE_RETARD(U("RET"));
+	 const string_t GenInfoConstants::GENRE_MISC(U("MISC"));
+	 const string_t GenInfoConstants::GENRE_NOTE(U("NOTE"));
+	//
+	 const string_t GenInfoConstants::DEPARTEMENT_TYPE(U("departement"));
+	 const string_t GenInfoConstants::GROUPE_TYPE(U("groupe"));
+	 const string_t GenInfoConstants::UNITE_TYPE(U("unite"));
+	 const string_t GenInfoConstants::MATIERE_TYPE(U("matiere"));
+	 const string_t GenInfoConstants::ANNEE_TYPE(U("annee"));
+	 const string_t GenInfoConstants::SEMESTRE_TYPE(U("semestre"));
+	 const string_t GenInfoConstants::PERSON_TYPE(U("person"));
+	 const string_t GenInfoConstants::ADMINISTRATORPERSON_TYPE(U("administratorperson"));
+	 const string_t GenInfoConstants::ENSEIGNANTPERSON_TYPE(U("enseignantperson"));
+	 const string_t GenInfoConstants::ETUDIANTPERSON_TYPE(U("etudiantperson"));
+	 const string_t GenInfoConstants::ENSEIGNANTAFFECTATION_TYPE(U("enseignantaffectation"));
+	 const string_t GenInfoConstants::ETUDIANTAFFECTATION_TYPE(U("etudiantaffectation"));
+	 const string_t GenInfoConstants::GROUPEEVENT_TYPE(U("groupeevent"));
+	 const string_t GenInfoConstants::ETUDIANTEVENT_TYPE(U("etudiantevent"));
+	 const string_t GenInfoConstants::ETUDIANT_TYPE(U("etudiant"));
+	 const string_t GenInfoConstants::ENSEIGNANT_TYPE(U("enseignant"));
+	 const string_t GenInfoConstants::ADMINISTRATOR_TYPE(U("administrator"));
+	 const string_t GenInfoConstants::SUPERPERSON_TYPE(U("superperson"));
+	//
+	 const string_t GenInfoConstants::ETUDIANTEVENT_PREFIX(U("TV"));
+	 const string_t GenInfoConstants::GROUPEEVENT_PREFIX(U("GV"));
+	 const string_t GenInfoConstants::ETUDIANTAFFECTATION_PREFIX(U("TA"));
+	 const string_t GenInfoConstants::ENSEIGNANTAFFECTATION_PREFIX(U("EA"));
+	 const string_t GenInfoConstants::PERSON_PREFIX(U("PS"));
+	 const string_t GenInfoConstants::SEMESTRE_PREFIX(U("SM"));
+	 const string_t GenInfoConstants::MATIERE_PREFIX(U("MT"));
+	 const string_t GenInfoConstants::UNITE_PREFIX(U("UN"));
+	 const string_t GenInfoConstants::GROUPE_PREFIX(U("GP"));
+	 const string_t GenInfoConstants::ANNEE_PREFIX(U("AN"));
+	 const string_t GenInfoConstants::DEPARTEMENT_PREFIX(U("DP"));
+	 const string_t GenInfoConstants::ETUDIANT_PREFIX(U("ET"));
+	 const string_t GenInfoConstants::ENSEIGNANT_PREFIX(U("EN"));
+	 const string_t GenInfoConstants::ADMINISTRATOR_PREFIX(U("AD"));
+	///////////////////////////////////////////////////////
 }// namespace geninfo

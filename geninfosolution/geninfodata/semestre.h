@@ -11,8 +11,6 @@ namespace geninfo {
 	class Semestre : public SigleNamedItem
 	{
 	public:
-		static const string_t SEMESTRE_TYPE;
-	public:
 		Semestre();
 		Semestre(const Annee &oAnnee);
 		Semestre(const value &oMap);

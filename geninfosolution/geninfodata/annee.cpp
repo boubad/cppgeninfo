@@ -2,23 +2,18 @@
 #include "annee.h"
 #include "semestre.h"
 #include "IDatabaseManager.h"
+#include "genninfoconstants.h"
 ///////////////////////////
 namespace geninfo {
 	//////////////////////////
-	const string_t Annee::ANNEE_TYPE(U("annee"));
-	const string_t ANNEE_PREFIX = U("ANN");
-	////////////
-	const string_t STRING_STARTDATE = U("startdate");
-	const string_t STRING_ENDDATE = U("enddate");
-	//////////////////////////////////////////
 	Annee::Annee() {
-		this->set_string(BaseItem::TYPE_KEY, Annee::ANNEE_TYPE);
+		this->set_string(GenInfoConstants::TYPE, GenInfoConstants::ANNEE_TYPE);
 	}
 	Annee::Annee(const Departement &oDep): DepSigleNamedItem(oDep) {
-		this->set_string(BaseItem::TYPE_KEY, Annee::ANNEE_TYPE);
+		this->set_string(GenInfoConstants::TYPE, GenInfoConstants::ANNEE_TYPE);
 	}
 	Annee::Annee(const value &oMap) :DepSigleNamedItem(oMap) {
-		this->set_string(BaseItem::TYPE_KEY, Annee::ANNEE_TYPE);
+		this->set_string(GenInfoConstants::TYPE, GenInfoConstants::ANNEE_TYPE);
 	}
 	Annee::Annee(const Annee &other) : DepSigleNamedItem(other) {
 
@@ -34,31 +29,31 @@ namespace geninfo {
 	}
 	Date Annee::start_date(void) const {
 		Date dRet;
-		if (this->has_field(STRING_STARTDATE)) {
-			value v = this->get_value_at(STRING_STARTDATE);
+		if (this->has_field(GenInfoConstants::STARTDATE)) {
+			value v = this->get_value_at(GenInfoConstants::STARTDATE);
 			dRet = value_to_date(v);
 		}
 		return dRet;
 	}
 	void Annee::start_date(Date d) {
-		this->set_value_at(STRING_STARTDATE, date_to_value(d));
+		this->set_value_at(GenInfoConstants::STARTDATE, date_to_value(d));
 	}
 	Date Annee::end_date(void) const {
 		Date dRet;
-		if (this->has_field(STRING_ENDDATE)) {
-			value v = this->get_value_at(STRING_ENDDATE);
+		if (this->has_field(GenInfoConstants::ENDDATE)) {
+			value v = this->get_value_at(GenInfoConstants::ENDDATE);
 			dRet = value_to_date(v);
 		}
 		return dRet;
 	}
 	void Annee::end_date(Date d) {
-		this->set_value_at(STRING_ENDDATE, date_to_value(d));
+		this->set_value_at(GenInfoConstants::ENDDATE, date_to_value(d));
 	}
 	string_t Annee::type(void) const {
-		return ANNEE_TYPE;
+		return GenInfoConstants::ANNEE_TYPE;
 	}
 	string_t Annee::store_prefix(void) const {
-		return ANNEE_PREFIX;
+		return GenInfoConstants::ANNEE_PREFIX;
 	}
 	bool Annee::is_storeable(void) const {
 		Date d1 = this->start_date();

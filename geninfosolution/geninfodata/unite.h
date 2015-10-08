@@ -11,8 +11,6 @@ namespace geninfo {
 	class Unite : public DepSigleNamedItem
 	{
 	public:
-		static const string_t UNITE_TYPE;
-	public:
 		Unite();
 		Unite(const Departement &oDep);
 		Unite(const value &oMap);

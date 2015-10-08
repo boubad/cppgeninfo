@@ -8,7 +8,6 @@ namespace geninfo {
 	class Person : public BaseItem
 	{
 	public:
-		static const string_t PERSON_TYPE;
 		static pplx::task<Person *> find_person_by_username(IDatabaseManager &oMan, const string_t &susername, bool bAttachments = false);
 	public:
 		Person();

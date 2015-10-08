@@ -45,8 +45,6 @@ namespace geninfo {
 	class EnseignantAffectation : public Affectation
 	{
 	public:
-		static const string_t ENSEIGNANTAFFECTATION_TYPE;
-	public:
 		EnseignantAffectation();
 		EnseignantAffectation(const Enseignant &oProf, const Matiere &oMat, const Semestre &oSem, const Groupe &oGroupe);
 		EnseignantAffectation(const value &oMap);
@@ -74,8 +72,6 @@ namespace geninfo {
 	///////////////////////////////////
 	class EtudiantAffectation : public Affectation
 	{
-	public:
-		static const string_t ETUDIANTAFFECTATION_TYPE;
 	public:
 		EtudiantAffectation();
 		EtudiantAffectation(const Etudiant &oEtud,const Semestre &oSem, const Groupe &oGroupe);

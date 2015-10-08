@@ -9,10 +9,6 @@ namespace geninfo {
 	class Groupe : public DepSigleNamedItem
 	{
 	public:
-		static const string_t GROUPE_TYPE;
-		static const string_t GENRE_COURS;
-		static const string_t GENRE_TD;
-		static const string_t GENRE_TP;
 		static std::vector<string_t> genres(void);
 	public:
 		Groupe();

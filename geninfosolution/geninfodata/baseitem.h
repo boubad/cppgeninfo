@@ -12,8 +12,6 @@ namespace geninfo {
 	class BaseItem : public BaseDocument
 	{
 	public:
-		static const string_t TYPE_KEY;
-	public:
 		BaseItem();
 		BaseItem(const value &oMap);
 		BaseItem(const BaseItem &other);

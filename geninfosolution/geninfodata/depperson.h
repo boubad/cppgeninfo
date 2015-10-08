@@ -31,8 +31,6 @@ namespace geninfo {
 	///////////////////////////////////////////////
 	class Etudiant : public DepartementPerson {
 	public:
-		static const string_t ETUDIANT_TYPE;
-	public:
 		Etudiant();
 		Etudiant(const Departement &oDep, const Person &oPers);
 		Etudiant(const value &oMap);
@@ -47,8 +45,6 @@ namespace geninfo {
 	}; // class Etudiant
 	////////////////////////////////
 	class Enseignant : public DepartementPerson {
-	public:
-		static const string_t ENSEIGNANT_TYPE;
 	public:
 		Enseignant();
 		Enseignant(const Departement &oDep, const Person &oPers);
