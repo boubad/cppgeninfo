@@ -22,7 +22,7 @@
 #include <boost/date_time/posix_time/posix_time.hpp>
 ////////////////////////////////////
 namespace geninfo {
-	//////////////////////////////////////
+	////////////////////////////////////////
 	typedef utility::string_t string_t;
 	typedef utility::ostream_t ostream_t;
 	typedef utility::istream_t istream_t;

@@ -67,10 +67,12 @@ namespace geninfo
 		BaseDocument & operator=(const BaseDocument &other);
 		virtual ~BaseDocument();
 	public:
-		const value & operator()() const {
-			return this->_m_val;
+		operator const value &() const {
+			return (this->_m_val);
 		}
-		const value & get_value(void) const;
+		const value & get_value(void) const {
+			return (this->_m_val);
+		}
 	public:
 		bool deleted(void) const;
 		size_t local_seq(void) const;
@@ -113,6 +115,9 @@ namespace geninfo
 		bool has_rev(void) const;
 		ostream_t & write_to(ostream_t &os) const;
 	protected:
+		operator value &() {
+			return (this->_m_val);
+		}
 		value & get_value(void);
 		void id(const string_t &s);
 		void rev(const string_t &s);
