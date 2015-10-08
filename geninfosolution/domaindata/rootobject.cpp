@@ -47,6 +47,13 @@ namespace geninfo {
 		}
 		return os;
 	}
+	std::vector<string> RootObject::keys(void) const {
+		std::vector<string> oRet;
+		std::for_each(this->m_obj.begin(), this->m_obj.end(), [&oRet](const Pair &p) {
+			oRet.push_back(p.name_);
+		});
+		return oRet;
+	}
 	bool RootObject::is_empty(void) const {
 		return (this->m_obj.empty());
 	}

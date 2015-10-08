@@ -27,6 +27,8 @@ namespace geninfo {
 		string to_string(void) const;
 		ostream & write_to(ostream &os) const;
 	public:
+		std::vector<string> keys(void) const;
+		Value get_value(const string &s) const;
 		bool is_empty(void) const;
 		bool contains(const string &key) const;
 		bool get_bool(const string &key) const;
@@ -47,7 +49,7 @@ namespace geninfo {
 		operator Object&() {
 			return (this->m_obj);
 		}
-		Value get_value(const string &s) const;
+		
 		void set_value(const string &key, const Value &value);
 	private:
 		Object m_obj;

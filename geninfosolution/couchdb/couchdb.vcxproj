@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0E30C763-89B9-4E69-944B-9D3F5D0C2381}</ProjectGuid>
+    <ProjectGuid>{D815C232-014C-4AA2-BD29-26827FC8D8CF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>domaindata</RootNamespace>
+    <RootNamespace>couchdb</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -70,23 +70,23 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\VS2015\include;D:\VS2015\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\domaindata;C:\VS2015\include;D:\VS2015\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\VS2015\include;D:\VS2015\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\domaindata;C:\VS2015\include;D:\VS2015\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\VS2015\include;D:\VS2015\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\domaindata;C:\VS2015\include;D:\VS2015\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\VS2015\include;D:\VS2015\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\domaindata;C:\VS2015\include;D:\VS2015\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SCL_SECURE_NO_WARNINGS;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -99,7 +99,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SCL_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -114,7 +114,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SCL_SECURE_NO_WARNINGS;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -131,7 +131,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SCL_SECURE_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -145,28 +145,12 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="baseheader.h" />
-    <ClInclude Include="domainconstants.h" />
-    <ClInclude Include="idatamanager.h" />
-    <ClInclude Include="json_spirit.h" />
-    <ClInclude Include="json_spirit_error_position.h" />
-    <ClInclude Include="json_spirit_reader.h" />
-    <ClInclude Include="json_spirit_reader_template.h" />
-    <ClInclude Include="json_spirit_stream_reader.h" />
-    <ClInclude Include="json_spirit_utils.h" />
-    <ClInclude Include="json_spirit_value.h" />
-    <ClInclude Include="json_spirit_writer.h" />
-    <ClInclude Include="json_spirit_writer_options.h" />
-    <ClInclude Include="json_spirit_writer_template.h" />
-    <ClInclude Include="rootobject.h" />
+    <ClInclude Include="couchdbdatamanager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="domainconstants.cpp" />
-    <ClCompile Include="json_spirit_reader.cpp" />
-    <ClCompile Include="json_spirit_writer.cpp" />
-    <ClCompile Include="rootobject.cpp" />
+    <ClCompile Include="couchdbdatamanager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

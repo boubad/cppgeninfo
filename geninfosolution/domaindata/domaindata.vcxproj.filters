@@ -60,6 +60,12 @@
     <ClInclude Include="json_spirit_writer_template.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="domainconstants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="idatamanager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -72,6 +78,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="json_spirit_writer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="domainconstants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
