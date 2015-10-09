@@ -73,6 +73,10 @@ namespace geninfo {
 		std::string sRes = urlencode(surl);
 		return utility::conversions::to_string_t(sRes);
 	}// url_encode
+	///////////////////////////////
+	static void infovalue_to_object(const Value &v, web::json::value &oRet) {
+
+	}//infovalue_to_object
 	 //////////////////////////////
 	CouchDBDataManager::CouchDBDataManager()
 	{
