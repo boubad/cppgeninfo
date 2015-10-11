@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "couchdb", "couchdb\couchdb.
 		{0E30C763-89B9-4E69-944B-9D3F5D0C2381} = {0E30C763-89B9-4E69-944B-9D3F5D0C2381}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gendata", "gendata\gendata.vcxproj", "{9355E56C-B258-45FF-99A7-EE093C7C3B15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -57,6 +59,14 @@ Global
 		{D815C232-014C-4AA2-BD29-26827FC8D8CF}.Release|x64.Build.0 = Release|x64
 		{D815C232-014C-4AA2-BD29-26827FC8D8CF}.Release|x86.ActiveCfg = Release|Win32
 		{D815C232-014C-4AA2-BD29-26827FC8D8CF}.Release|x86.Build.0 = Release|Win32
+		{9355E56C-B258-45FF-99A7-EE093C7C3B15}.Debug|x64.ActiveCfg = Debug|x64
+		{9355E56C-B258-45FF-99A7-EE093C7C3B15}.Debug|x64.Build.0 = Debug|x64
+		{9355E56C-B258-45FF-99A7-EE093C7C3B15}.Debug|x86.ActiveCfg = Debug|Win32
+		{9355E56C-B258-45FF-99A7-EE093C7C3B15}.Debug|x86.Build.0 = Debug|Win32
+		{9355E56C-B258-45FF-99A7-EE093C7C3B15}.Release|x64.ActiveCfg = Release|x64
+		{9355E56C-B258-45FF-99A7-EE093C7C3B15}.Release|x64.Build.0 = Release|x64
+		{9355E56C-B258-45FF-99A7-EE093C7C3B15}.Release|x86.ActiveCfg = Release|Win32
+		{9355E56C-B258-45FF-99A7-EE093C7C3B15}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
