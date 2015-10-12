@@ -14,7 +14,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "domaindata", "domaindata\do
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "couchdb", "couchdb\couchdb.vcxproj", "{D815C232-014C-4AA2-BD29-26827FC8D8CF}"
 	ProjectSection(ProjectDependencies) = postProject
-		{0E30C763-89B9-4E69-944B-9D3F5D0C2381} = {0E30C763-89B9-4E69-944B-9D3F5D0C2381}
+		{9355E56C-B258-45FF-99A7-EE093C7C3B15} = {9355E56C-B258-45FF-99A7-EE093C7C3B15}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gendata", "gendata\gendata.vcxproj", "{9355E56C-B258-45FF-99A7-EE093C7C3B15}"

@@ -74,6 +74,9 @@ namespace geninfo
 	{
 		//dtor
 	}
+	value_type Value::type(void) const {
+		return this->m_type;
+	}
 	bool Value::is_null(void) const
 	{
 		return (m_type == value_type::null_type);
@@ -318,6 +321,25 @@ namespace geninfo
 	{
 		this->append(std::make_shared<Value>(b));
 	}
+	void Array::append_value(PValue v) {
+		this->append(v);
+	}
+	void Array::append_value(const Value &v) {
+		if (!v.is_null()) {
+			PValue pp = std::make_shared <Value>(v);
+			this->append(pp);
+		}
+	}
+	void Array::append_object(PObject v) {
+		if (v.get() != nullptr) {
+			this->append(std::make_shared<Value>(v));
+		}
+	}
+	void  Array::append_array(PArray v) {
+		if (v.get() != nullptr) {
+			this->append(std::make_shared<Value>(v));
+		}
+	}
 	Array * Array::append_array()
 	{
 		PArray b = std::make_shared<Array>();
@@ -515,6 +537,10 @@ namespace geninfo
 	}
 	void Object::set_string(const std::string &key, std::string b)
 	{
+		PValue v = std::make_shared<Value>(b);
+		this->set(key, v);
+	}
+	void Object::set_value(const std::string &key, const Value &b) {
 		PValue v = std::make_shared<Value>(b);
 		this->set(key, v);
 	}

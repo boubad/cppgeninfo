@@ -70,16 +70,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\domaindata;C:\VS2015\include;D:\VS2015\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\gendata;C:\VS2015\include;D:\VS2015\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>..\domaindata;C:\VS2015\include;D:\VS2015\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\gendata;C:\VS2015\include;D:\VS2015\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>..\domaindata;C:\VS2015\include;D:\VS2015\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\gendata;C:\VS2015\include;D:\VS2015\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>..\domaindata;C:\VS2015\include;D:\VS2015\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\gendata;C:\VS2015\include;D:\VS2015\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -145,12 +145,18 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="couchconstants.h" />
     <ClInclude Include="couchdbdatamanager.h" />
+    <ClInclude Include="couchdoc.h" />
+    <ClInclude Include="genutils.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="couchconstants.cpp" />
     <ClCompile Include="couchdbdatamanager.cpp" />
+    <ClCompile Include="couchdoc.cpp" />
+    <ClCompile Include="genutils.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

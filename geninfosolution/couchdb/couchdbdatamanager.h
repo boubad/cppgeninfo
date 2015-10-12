@@ -10,22 +10,22 @@ namespace geninfo {
 	{
 	public:
 		CouchDBDataManager();
-		CouchDBDataManager(const string &baseUrl, const string &database);
+		CouchDBDataManager(const std::string &baseUrl, const std::string &database);
 		CouchDBDataManager(const CouchDBDataManager &other);
 		CouchDBDataManager & operator=(const CouchDBDataManager &other);
 		virtual ~CouchDBDataManager();
 	public:
-		virtual Value read_doc(const string &id, bool bAttachments = false, bool bMeta = false);
+		virtual Value read_doc(const std::string &id, bool bAttachments = false, bool bMeta = false);
 		virtual Value insert_doc(const Value &doc);
 		virtual Value update_doc(const Value &doc);
 		virtual Value remove_doc(const Value &doc);
-		virtual Value read_docs_range(const string &startkey, const string &endkey,
+		virtual Value read_docs_range(const std::string &startkey, const std::string &endkey,
 			int skip = 0, int limit = 0, bool bDoc = false);
-		virtual Value read_docs_array(const std::vector<string> ids);
+		virtual Value read_docs_array(const std::vector<std::string> ids);
 		virtual Value maintains_docs(const std::vector<Value> docs, bool bDelete = false);
 	private:
-		string m_baseurl;
-		string m_database;
+		std::string m_baseurl;
+		std::string m_database;
 	};
 	////////////////////////
 }// namespace geninfo

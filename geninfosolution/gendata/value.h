@@ -49,6 +49,7 @@ namespace geninfo
 		Value & operator=(const Value &other);
 		virtual ~Value();
 	public:
+		value_type type(void) const;
 		bool is_null(void) const;
 		bool is_bool(void) const;
 		bool is_integer(void) const;
@@ -100,6 +101,10 @@ namespace geninfo
 		void append_float(float b);
 		void append_double(double b);
 		void append_string(std::string b);
+		void append_value(PValue v);
+		void append_value(const Value &v);
+		void append_object(PObject v);
+		void append_array(PArray v);
 		Array * append_array();
 		Object * append_object();
 		//
@@ -139,6 +144,7 @@ namespace geninfo
 		void set_int(const std::string &key, int b);
 		void set_double(const std::string &key, double b);
 		void set_string(const std::string &key, std::string b);
+		void set_value(const std::string &key, const Value &v);
 		Array *set_array(const std::string &key);
 		Object *set_object(const std::string &key);
 		//
