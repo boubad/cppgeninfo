@@ -68,6 +68,12 @@ namespace geninfo
 		BaseDoc & operator=(const BaseDoc &other);
 		virtual ~BaseDoc();
 	public:
+		const Value & value(void) const {
+			return (this->m_val);
+		}
+		Value & value(void)  {
+			return (this->m_val);
+		}
 		operator const Value &()const
 		{
 			return (this->m_val);
