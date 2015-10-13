@@ -283,36 +283,30 @@ namespace geninfo {
 		}
 		ReadDocOptions options;
 		options.attachments = true;
-		return st_read_doc(baseUrl, db, id, options).then([&](task<value> t1) {
-			value val;
-			try {
-				val = t1.get();
+		value val = st_read_doc(baseUrl, db, id, options).get();
+		if ((!val.is_null()) && val.is_object() && val.has_field(STRING_ID)) {
+			object oo = val.as_object();
+			if (val.has_field(STRING_REV)) {
+				rev = (val[STRING_REV]).as_string();
+				vNew[STRING_REV] = value(rev);
 			}
-			catch (...) {}
-			if ((!val.is_null()) && val.is_object() && val.has_field(STRING_ID)) {
-				object oo = val.as_object();
-				if (oo.find(STRING_REV) != oo.end()) {
-					rev = (oo[STRING_REV]).as_string();
-					vNew[STRING_REV] = value(rev);
-				}
-				if (val.has_field(STRING_ATTACHMENTS)) {
-					vNew[STRING_ATTACHMENTS] = val.at(STRING_ATTACHMENTS);
-				}
+			if (val.has_field(STRING_ATTACHMENTS)) {
+				vNew[STRING_ATTACHMENTS] = val.at(STRING_ATTACHMENTS);
 			}
-			utility::string_t uri = db;
-			uri = uri + STRING_SLASH + id;
-			http_client client(baseUrl);
-			http_request request(methods::PUT);
-			request.headers().add(ACCEPT_STRING, APPLICATION_JSON_STRING);
-			if (!rev.empty()) {
-				uri = uri + U("?rev=") + rev;
-				request.headers().add(HEADER_IF_MATCH, rev);
-			}
-			request.headers().add(HEADER_COMMIT, STRING_TRUE);
-			request.set_request_uri(uri);
-			request.set_body(vNew);
-			return client.request(request);
-		}).then([=](http_response response) {
+		}
+		utility::string_t uri = db;
+		uri = uri + STRING_SLASH + id;
+		http_client client(baseUrl);
+		http_request request(methods::PUT);
+		request.headers().add(ACCEPT_STRING, APPLICATION_JSON_STRING);
+		if (!rev.empty()) {
+			uri = uri + U("?rev=") + rev;
+			request.headers().add(HEADER_IF_MATCH, rev);
+		}
+		request.headers().add(HEADER_COMMIT, STRING_TRUE);
+		request.set_request_uri(uri);
+		request.set_body(vNew);
+		return client.request(request).then([=](http_response response) {
 			return response.extract_json();
 		}).then([=](task<value> previousTask) {
 			value oRet;
@@ -820,19 +814,32 @@ namespace geninfo {
 	Value CouchDBDataManager::maintains_docs(const std::vector<Value> &docs, bool bDelete /*= false*/) {
 		Value oRet;
 		try {
+			string_t url = convert_from_string(this->m_baseurl);
+			string_t db = convert_from_string(this->m_database);
 			std::vector<value> odata;
 			for (auto it = docs.begin(); it != docs.end(); ++it) {
 				value s = infovalue_to_value(*it);
+				string_t sid, rev;
 				if (s.is_object()) {
-					if (bDelete) {
-						s[STRING_DELETED] = value(true);
+					if (s.has_field(STRING_ID)) {
+						sid = (s[STRING_ID]).as_string();
+						rev = st_exists_doc(url, db, sid).get();
+					}// id
+					if (!rev.empty()) {
+						s[STRING_REV] = value(rev);
 					}
-					odata.push_back(s);
+					if (bDelete) {
+						if ((!sid.empty()) && (!rev.empty())) {
+							s[STRING_DELETED] = value(true);
+							odata.push_back(s);
+						}
+					}
+					else {
+						odata.push_back(s);
+					}
 				}// object
 			}// it
 			if (!odata.empty()) {
-				string_t url = convert_from_string(this->m_baseurl);
-				string_t db = convert_from_string(this->m_database);
 				value vr = st_bulk_docs(url, db, odata).get();
 				oRet = value_to_infovalue(vr);
 			}
