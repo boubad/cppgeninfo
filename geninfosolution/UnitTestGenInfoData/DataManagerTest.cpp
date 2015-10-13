@@ -180,6 +180,26 @@ namespace UnitTestGenUtils
 			s = val.to_string();
 			Logger::WriteMessage(s.c_str());
 		}//TestBulkMaintains
+		TEST_METHOD(TestReadArray)
+		{
+			size_t n = 10;
+			IDataManager *pMan = m_man.get();
+			vector<string> ids;
+			for (size_t i = 0; i < n; ++i) {
+				stringstream os;
+				os << (i + 1);
+				string si = os.str();
+				while (si.length() < 2) {
+					si = "0" + si;
+				}
+				string id = "test" + si;
+				ids.push_back(id);
+			}//i
+			 //
+			Value val = pMan->read_docs_array(ids);
+			string s = val.to_string();
+			Logger::WriteMessage(s.c_str());
+		}//TestReadArray
 	};
 	string DataManagerTest::m_baseUrl("http://localhost:5984");
 	string DataManagerTest::m_database("test");

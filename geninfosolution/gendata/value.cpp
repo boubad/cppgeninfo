@@ -212,6 +212,11 @@ namespace geninfo
 	{
 		switch (this->m_type)
 		{
+		case value_type::null_type:
+		{
+			os << "null";
+		}
+		break;
 		case value_type::array_type:
 		{
 			Array *pAr = this->as_array();

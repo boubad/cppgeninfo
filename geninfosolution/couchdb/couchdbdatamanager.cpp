@@ -804,6 +804,7 @@ namespace geninfo {
 				string_t url = convert_from_string(this->m_baseurl);
 				string_t db = convert_from_string(this->m_database);
 				AllDocsOptions opts;
+				opts.include_docs = true;
 				value vr = st_array_docs(url, db, oids, opts).get();
 				oRet = value_to_infovalue(vr);
 			}
