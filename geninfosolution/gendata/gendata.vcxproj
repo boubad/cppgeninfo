@@ -148,6 +148,7 @@
     <ClInclude Include="basedoc.h" />
     <ClInclude Include="domainconstants.h" />
     <ClInclude Include="idatamanager.h" />
+    <ClInclude Include="iservicefactory.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="value.h" />

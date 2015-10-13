@@ -517,6 +517,170 @@ namespace geninfo {
 			return task_from_result(oRet);
 		});
 	}//get_array_docs
+	static task<std::vector<string_t>> st_get_uuids(const string_t &baseUrl, size_t count) {
+		http_client client(baseUrl);
+		http_request request(methods::GET);
+		request.headers().add(ACCEPT_STRING, APPLICATION_JSON_STRING);
+		utility::stringstream_t os;
+		if (count < 1) {
+			count = 1;
+		}
+		os << STRING_UUIDS_COUNT << count;
+		string_t s = os.str();
+		request.set_request_uri(s);
+		return client.request(request).then([=](http_response response) {
+			if (response.status_code() == status_codes::OK) {
+				return response.extract_json();
+			}
+			else {
+				throw http_exception(response.status_code());
+			}
+		}).then([=](task<value> previousTask) {
+			std::vector<string_t> oRet;
+			try {
+				const value  & jsonvalue = previousTask.get();
+				if ((!jsonvalue.is_null()) && jsonvalue.is_object()) {
+					if (jsonvalue.has_field(STRING_UUIDS)) {
+						auto v = (jsonvalue.at(STRING_UUIDS)).as_array();
+						size_t n = v.size();
+						for (size_t i = 0; i < n; ++i) {
+							string_t ss = (v.at(i)).as_string();
+							oRet.push_back(ss);
+						}
+					}// uuids
+				}// obj
+			}
+			catch (std::exception &ex) {
+				throw ex;
+			}
+			return task_from_result(oRet);
+		});
+	}//get_uuids
+	static task<std::vector<string_t> > st_get_all_dbs(const string_t &baseUrl) {
+		http_client client(baseUrl);
+		http_request request(methods::GET);
+		request.headers().add(ACCEPT_STRING, APPLICATION_JSON_STRING);
+		request.set_request_uri(STRING_ALL_DBS);
+		return client.request(request).then([=](http_response response) {
+			if (response.status_code() == status_codes::OK) {
+				return response.extract_json();
+			}
+			else {
+				throw http_exception(response.status_code());
+			}
+		}).then([=](task<value> previousTask) {
+			std::vector<string_t> oRet;
+			try {
+				const value  & jsonvalue = previousTask.get();
+				if ((!jsonvalue.is_null()) && (jsonvalue.is_array())) {
+					size_t n = jsonvalue.size();
+					for (size_t i = 0; i < n; ++i) {
+						string_t s = (jsonvalue.at(i)).as_string();
+						oRet.push_back(s);
+					}
+				}
+			}
+			catch (std::exception &ex) {
+				throw ex;
+			}
+			return task_from_result(oRet);
+		});
+	}//get_all_dbs
+	static task<value> st_server_info(const string_t &baseUrl) {
+		http_client client(baseUrl);
+		http_request request(methods::GET);
+		request.headers().add(ACCEPT_STRING, APPLICATION_JSON_STRING);
+		return client.request(request).then([=](http_response response) {
+			if (response.status_code() == status_codes::OK) {
+				return response.extract_json();
+			}
+			else {
+				throw http_exception(response.status_code());
+			}
+		}).then([=](task<value> previousTask) {
+			value pRet;
+			try {
+				pRet = previousTask.get();
+			}
+			catch (std::exception &ex) {
+				throw ex;
+			}
+			return task_from_result(pRet);
+		});
+	}// get_server_info
+	static task<bool> st_exists_database(const string_t &baseUrl, const string_t &db) {
+		string_t s_uri = db;
+		http_client client(baseUrl);
+		http_request request(methods::HEAD);
+		request.set_request_uri(s_uri);
+		return client.request(request).then([=](http_response response) {
+			bool bRet = (response.status_code() == status_codes::OK);
+			if ((!bRet) && (response.status_code() != status_codes::NotFound)) {
+				throw http_exception(response.status_code());
+			}
+			return task_from_result(bRet);
+		});
+	}//exists_database
+	static task<value> st_database_info(const string_t &baseUrl, const string_t &db) {
+		string_t s_uri = db;
+		http_client client(baseUrl);
+		http_request request(methods::GET);
+		request.headers().add(ACCEPT_STRING, APPLICATION_JSON_STRING);
+		request.set_request_uri(s_uri);
+		return client.request(request).then([=](http_response response) {
+			if (response.status_code() == status_codes::OK) {
+				return response.extract_json();
+			}
+			else {
+				throw http_exception(response.status_code());
+			}
+		}).then([=](task<value> t1) {
+			value  oRet;
+			try {
+				oRet = t1.get();
+			}
+			catch (std::exception &ex) {
+				throw ex;
+			}
+			return task_from_result(oRet);
+		});
+	}//get_database_info
+	static task<value> st_create_database(const string_t &baseUrl, const string_t &db) {
+		http_client client(baseUrl);
+		http_request request(methods::PUT);
+		request.headers().add(ACCEPT_STRING, APPLICATION_JSON_STRING);
+		request.set_request_uri(db);
+		return client.request(request).then([=](http_response response) {
+			return response.extract_json();
+		}).then([=](task<value> t1) {
+			value oRet;
+			try {
+				oRet = t1.get();
+			}
+			catch (std::exception &ex) {
+				throw ex;
+			}
+			return task_from_result(oRet);
+		});
+	}//create_database
+	static task<value> st_delete_database(const string_t &baseUrl, const string_t &db) {
+		http_client client(baseUrl);
+		http_request request(methods::DEL);
+		request.headers().add(ACCEPT_STRING, APPLICATION_JSON_STRING);
+		request.set_request_uri(db);
+		return client.request(request).then([=](http_response response) {
+			return response.extract_json();
+		}).then([=](task<value> t1) {
+			value oRet;
+			try {
+				oRet = t1.get();
+			}
+			catch (std::exception &ex) {
+				throw ex;
+			}
+			return task_from_result(oRet);
+		});
+	}//delete_database
 	 //////////////////////////////
 	CouchDBDataManager::CouchDBDataManager() :
 		m_baseurl(DEFAULT_BASEURL), m_database(DEFAULT_DATABASE)
@@ -538,6 +702,19 @@ namespace geninfo {
 			this->m_database = other.m_database;
 		}
 		return (*this);
+	}
+	/////////////////////////////////
+	std::string CouchDBDataManager::base_url(void) {
+		return this->m_baseurl;
+	}
+	void CouchDBDataManager::base_url(const std::string &s) {
+		this->m_baseurl = trim(s);
+	}
+	std::string CouchDBDataManager::database_name(void) {
+		return this->m_database;
+	}
+	void CouchDBDataManager::database_name(const std::string &s) {
+		this->m_database = trim(s);
 	}
 	///////////////////////////////
 	Value CouchDBDataManager::read_doc(const std::string &sid, bool bAttachments /* = false*/, bool bMeta /*= false*/) {
@@ -659,6 +836,98 @@ namespace geninfo {
 				value vr = st_bulk_docs(url, db, odata).get();
 				oRet = value_to_infovalue(vr);
 			}
+		}
+		catch (...) {}
+		return oRet;
+	}
+	///////////////////////////////////
+	Value CouchDBDataManager::server_info(void) {
+		Value oRet;
+		try {
+			string_t url = convert_from_string(this->m_baseurl);
+			value vr = st_server_info(url).get();
+			oRet = value_to_infovalue(vr);
+		}
+		catch (...) {}
+		return oRet;
+	}
+	std::vector<std::string> CouchDBDataManager::get_uuids(int count/* = 1*/) {
+		std::vector<std::string> oRet;
+		try {
+			string_t url = convert_from_string(this->m_baseurl);
+			std::vector<string_t> vec = st_get_uuids(url, count).get();
+			for (auto it = vec.begin(); it != vec.end(); ++it) {
+				std::string s = convert_to_string(*it);
+				oRet.push_back(s);
+			}
+		}
+		catch (...) {}
+		return oRet;
+	}
+	std::vector<std::string> CouchDBDataManager::get_all_dbs(void) {
+		std::vector<std::string> oRet;
+		try {
+			string_t url = convert_from_string(this->m_baseurl);
+			std::vector<string_t> vec = st_get_all_dbs(url).get();
+			for (auto it = vec.begin(); it != vec.end(); ++it) {
+				std::string s = convert_to_string(*it);
+				oRet.push_back(s);
+			}
+		}
+		catch (...) {}
+		return oRet;
+	}
+	Value CouchDBDataManager::database_info(const std::string &db) {
+		Value oRet;
+		try {
+			string_t url = convert_from_string(this->m_baseurl);
+			string_t sdb = convert_from_string(db);
+			value vr = st_database_info(url, sdb).get();
+			oRet = value_to_infovalue(vr);
+		}
+		catch (...) {}
+		return oRet;
+	}
+	Value CouchDBDataManager::create_database(const std::string &db) {
+		Value oRet;
+		try {
+			string_t url = convert_from_string(this->m_baseurl);
+			string_t sdb = convert_from_string(db);
+			value vr = st_create_database(url, sdb).get();
+			oRet = value_to_infovalue(vr);
+		}
+		catch (...) {}
+		return oRet;
+	}
+	Value CouchDBDataManager::delete_database(const std::string &db) {
+		Value oRet;
+		try {
+			string_t url = convert_from_string(this->m_baseurl);
+			string_t sdb = convert_from_string(db);
+			value vr = st_delete_database(url, sdb).get();
+			oRet = value_to_infovalue(vr);
+		}
+		catch (...) {}
+		return oRet;
+	}
+	bool CouchDBDataManager::exists_database(const std::string &db) {
+		bool oRet = false;
+		try {
+			string_t url = convert_from_string(this->m_baseurl);
+			string_t sdb = convert_from_string(db);
+			oRet = st_exists_database(url, sdb).get();
+		}
+		catch (...) {}
+		return oRet;
+	}
+	std::string CouchDBDataManager::exists_doc(const std::string &docid) {
+		std::string oRet;
+		try {
+			string_t url = convert_from_string(this->m_baseurl);
+			string_t db = convert_from_string(this->m_database);
+			string_t id = convert_from_string(docid);
+			string_t s = st_exists_doc(url, db, id).get();
+			oRet = convert_to_string(s);
 		}
 		catch (...) {}
 		return oRet;

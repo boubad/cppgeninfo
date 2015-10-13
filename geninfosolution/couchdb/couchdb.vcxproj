@@ -148,6 +148,7 @@
     <ClInclude Include="couchconstants.h" />
     <ClInclude Include="couchdbdatamanager.h" />
     <ClInclude Include="couchdoc.h" />
+    <ClInclude Include="couchservicefactory.h" />
     <ClInclude Include="genutils.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -156,6 +157,7 @@
     <ClCompile Include="couchconstants.cpp" />
     <ClCompile Include="couchdbdatamanager.cpp" />
     <ClCompile Include="couchdoc.cpp" />
+    <ClCompile Include="couchservicefactory.cpp" />
     <ClCompile Include="genutils.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
