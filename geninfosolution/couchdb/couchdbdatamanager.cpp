@@ -49,6 +49,8 @@ namespace geninfo {
 	const utility::string_t STRING_DOC = U("doc");
 	const utility::string_t STRING_BULK_DOCS = U("_bulk_docs");
 	const utility::string_t STRING_DELETED = U("_deleted");
+	/////////////////////////////////////////////
+	const std::string STRING_ID_NATIVE("_id");
 	////////////////////////////////////////////
 	static Value value_to_infovalue(const web::json::value &v) {
 		Value oRet;
@@ -222,7 +224,7 @@ namespace geninfo {
 			return task_from_result(oRet);
 		});
 	}// st_read_doc
-	static task<UpdateResponse>  st_create_doc(const utility::string_t &baseUrl, const utility::string_t &db, const value &doc) {
+	static task<value>  st_create_doc(const utility::string_t &baseUrl, const utility::string_t &db, const value &doc) {
 		utility::string_t uri = db;
 		http_client client(baseUrl);
 		http_request request(methods::POST);
@@ -233,10 +235,9 @@ namespace geninfo {
 		return client.request(request).then([=](http_response response) {
 			return response.extract_json();
 		}).then([=](task<value> previousTask) {
-			UpdateResponse oRet;
+			value oRet;
 			try {
-				const value & jsonvalue = previousTask.get();
-				oRet = UpdateResponse(jsonvalue);
+				oRet = previousTask.get();
 			}
 			catch (std::exception &ex) {
 				throw ex;
@@ -244,9 +245,9 @@ namespace geninfo {
 			return task_from_result(oRet);
 		});
 	}// st_create_doc
-	static pplx::task<UpdateResponse>  st_maintains_doc(const utility::string_t &baseUrl, const utility::string_t &db, const value &doc) {
+	static pplx::task<value>  st_maintains_doc(const utility::string_t &baseUrl, const utility::string_t &db, const value &doc) {
 		if (!doc.is_object()) {
-			UpdateResponse r;
+			value r;
 			return task_from_result(r);
 		}
 		utility::string_t id;
@@ -314,10 +315,9 @@ namespace geninfo {
 		}).then([=](http_response response) {
 			return response.extract_json();
 		}).then([=](task<value> previousTask) {
-			UpdateResponse oRet;
+			value oRet;
 			try {
-				const value & jsonvalue = previousTask.get();
-				oRet = UpdateResponse(jsonvalue);
+				oRet = previousTask.get();
 			}
 			catch (std::exception &ex) {
 				throw ex;
@@ -325,9 +325,9 @@ namespace geninfo {
 			return task_from_result(oRet);
 		});
 	}// st_maintains_doc
-	static pplx::task<UpdateResponse>  st_del_doc(const utility::string_t &baseUrl,
+	static pplx::task<value>  st_del_doc(const utility::string_t &baseUrl,
 		const utility::string_t &db, const utility::string_t &docid) {
-		UpdateResponse oDef;
+		value oDef;
 		if (docid.empty()) {
 			return pplx::task_from_result(oDef);
 		}
@@ -362,10 +362,9 @@ namespace geninfo {
 		}).then([=](http_response response) {
 			return response.extract_json();
 		}).then([=](task<value> previousTask) {
-			UpdateResponse oRet;
+			value oRet;
 			try {
-				const value & jsonvalue = previousTask.get();
-				oRet = UpdateResponse(jsonvalue);
+				oRet = previousTask.get();
 			}
 			catch (std::exception &ex) {
 				throw ex;
@@ -413,7 +412,7 @@ namespace geninfo {
 			return task_from_result(oRet);
 		});
 	}//st_docs_ids
-	static task<AllDocsResponse>  st_get_all_docs(const string_t &baseUrl, const string_t &db, const AllDocsOptions &options) {
+	static task<value>  st_get_all_docs(const string_t &baseUrl, const string_t &db, const AllDocsOptions &options) {
 		string_t uri = db;
 		uri = uri + STRING_SLASH + STRING_ALL_DOCS;
 		http_client client(baseUrl);
@@ -432,10 +431,9 @@ namespace geninfo {
 				throw http_exception(response.status_code());
 			}
 		}).then([=](task<value> previousTask) {
-			AllDocsResponse oRet;
+			value oRet;
 			try {
-				const value  & jsonvalue = previousTask.get();
-				oRet = AllDocsResponse(jsonvalue);
+				oRet = previousTask.get();
 			}
 			catch (std::exception &ex) {
 				throw ex;
@@ -443,7 +441,7 @@ namespace geninfo {
 			return task_from_result(oRet);
 		});
 	}//get_all_docs
-	static task<std::vector<UpdateResponse>> st_bulk_docs(const string_t &baseUrl,
+	static task<value> st_bulk_docs(const string_t &baseUrl,
 		const string_t &db, const std::vector<value> &oVal) {
 		string_t uri = db;
 		uri = uri + STRING_SLASH + STRING_BULK_DOCS;
@@ -461,17 +459,9 @@ namespace geninfo {
 			}
 			throw http_exception(response.status_code());
 		}).then([=](task<value> previousTask) {
-			std::vector<UpdateResponse> oRet;
+			value oRet;
 			try {
-				const value & jsonvalue = previousTask.get();
-				if ((!jsonvalue.is_null()) && jsonvalue.is_array()) {
-					size_t n = jsonvalue.size();
-					for (size_t i = 0; i < n; ++i) {
-						const value &v = jsonvalue.at(i);
-						UpdateResponse inf(v);
-						oRet.push_back(inf);
-					}// i
-				}// array
+				oRet = previousTask.get();
 			}
 			catch (std::exception &ex) {
 				throw ex;
@@ -479,7 +469,7 @@ namespace geninfo {
 			return task_from_result(oRet);
 		});
 	}//:bulk_docs
-	static task<AllDocsResponse> st_array_docs(const string_t &baseUrl, const string_t &db,
+	static task<value> st_array_docs(const string_t &baseUrl, const string_t &db,
 		const std::vector<string_t> &keys,
 		const AllDocsOptions &options) {
 		std::vector<value> vx;
@@ -492,7 +482,7 @@ namespace geninfo {
 			}
 		}// i
 		if (vx.empty()) {
-			AllDocsResponse ox;
+			value ox;
 			return task_from_result(ox);
 		}
 		value oAr = value::array(vx);
@@ -517,10 +507,9 @@ namespace geninfo {
 				throw http_exception(response.status_code());
 			}
 		}).then([=](task<value> previousTask) {
-			AllDocsResponse oRet;
+			value oRet;
 			try {
-				const value  &jsonvalue = previousTask.get();
-				oRet = AllDocsResponse(jsonvalue);
+				oRet = previousTask.get();
 			}
 			catch (std::exception &ex) {
 				throw ex;
@@ -533,17 +522,11 @@ namespace geninfo {
 		m_baseurl(DEFAULT_BASEURL), m_database(DEFAULT_DATABASE)
 	{
 	}
-
-
 	CouchDBDataManager::~CouchDBDataManager()
 	{
 	}
 	CouchDBDataManager::CouchDBDataManager(const std::string &baseUrl,
 		const std::string &database) :m_baseurl(baseUrl), m_database(database) {
-		/*
-		std::string m_baseurl;
-		std::string m_database;
-		*/
 	}
 	CouchDBDataManager::CouchDBDataManager(const CouchDBDataManager &other) :
 		m_baseurl(other.m_baseurl), m_database(other.m_database) {
@@ -557,6 +540,128 @@ namespace geninfo {
 		return (*this);
 	}
 	///////////////////////////////
-
+	Value CouchDBDataManager::read_doc(const std::string &sid, bool bAttachments /* = false*/, bool bMeta /*= false*/) {
+		Value oRet;
+		try {
+			string_t url = convert_from_string(this->m_baseurl);
+			string_t db = convert_from_string(this->m_database);
+			string_t id = convert_from_string(sid);
+			ReadDocOptions opts;
+			opts.attachments = bAttachments;
+			opts.meta = bMeta;
+			value v = st_read_doc(url, db, id, opts).get();
+			oRet = value_to_infovalue(v);
+		}
+		catch (...) {}
+		return oRet;
+	}// read_doc
+	Value CouchDBDataManager::insert_doc(const Value &doc) {
+		Value oRet;
+		try {
+			string_t url = convert_from_string(this->m_baseurl);
+			string_t db = convert_from_string(this->m_database);
+			value v = infovalue_to_value(doc);
+			value vr = st_maintains_doc(url, db, v).get();
+			oRet = value_to_infovalue(vr);
+		}
+		catch (...) {}
+		return oRet;
+	}
+	Value CouchDBDataManager::update_doc(const Value &doc) {
+		Value oRet;
+		try {
+			string_t url = convert_from_string(this->m_baseurl);
+			string_t db = convert_from_string(this->m_database);
+			value v = infovalue_to_value(doc);
+			value vr = st_maintains_doc(url, db, v).get();
+			oRet = value_to_infovalue(vr);
+		}
+		catch (...) {}
+		return oRet;
+	}
+	Value CouchDBDataManager::remove_doc(const Value &doc) {
+		Value oRet;
+		try {
+			if (doc.is_object()) {
+				Object *pObj = doc.as_object();
+				if ((pObj != nullptr) && pObj->contains(STRING_ID_NATIVE)) {
+					std::string sid = pObj->get_string(STRING_ID_NATIVE);
+					if (!sid.empty()) {
+						string_t id = convert_from_string(sid);
+						string_t url = convert_from_string(this->m_baseurl);
+						string_t db = convert_from_string(this->m_database);
+						value vr = st_del_doc(url, db, id).get();
+						oRet = value_to_infovalue(vr);
+					}// not empty
+				}// id
+			}// obj
+		}
+		catch (...) {}
+		return oRet;
+	}
+	Value CouchDBDataManager::read_docs_range(const std::string &startkey, const std::string &endkey,
+		int skip /*= 0*/, int limit /*= 0*/, bool bDoc /*= false*/) {
+		Value oRet;
+		try {
+			string_t url = convert_from_string(this->m_baseurl);
+			string_t db = convert_from_string(this->m_database);
+			string_t s1 = convert_from_string(startkey);
+			string_t s2 = convert_from_string(endkey);
+			AllDocsOptions opts;
+			opts.startkey = s1;
+			opts.endkey = s2;
+			opts.skip = skip;
+			opts.limit = limit;
+			opts.include_docs = bDoc;
+			value vr = st_get_all_docs(url, db, opts).get();
+			oRet = value_to_infovalue(vr);
+		}
+		catch (...) {}
+		return oRet;
+	}
+	Value CouchDBDataManager::read_docs_array(const std::vector<std::string> &ids) {
+		Value oRet;
+		try {
+			std::vector<string_t> oids;
+			for (auto it = ids.begin(); it != ids.end(); ++it) {
+				string_t s = convert_from_string(*it);
+				if (!s.empty()) {
+					oids.push_back(s);
+				}
+			}// it
+			if (!oids.empty()) {
+				string_t url = convert_from_string(this->m_baseurl);
+				string_t db = convert_from_string(this->m_database);
+				AllDocsOptions opts;
+				value vr = st_array_docs(url, db, oids, opts).get();
+				oRet = value_to_infovalue(vr);
+			}
+		}
+		catch (...) {}
+		return oRet;
+	}
+	Value CouchDBDataManager::maintains_docs(const std::vector<Value> &docs, bool bDelete /*= false*/) {
+		Value oRet;
+		try {
+			std::vector<value> odata;
+			for (auto it = docs.begin(); it != docs.end(); ++it) {
+				value s = infovalue_to_value(*it);
+				if (s.is_object()) {
+					if (bDelete) {
+						s[STRING_DELETED] = value(true);
+					}
+					odata.push_back(s);
+				}// object
+			}// it
+			if (!odata.empty()) {
+				string_t url = convert_from_string(this->m_baseurl);
+				string_t db = convert_from_string(this->m_database);
+				value vr = st_bulk_docs(url, db, odata).get();
+				oRet = value_to_infovalue(vr);
+			}
+		}
+		catch (...) {}
+		return oRet;
+	}
 	/////////////////////////////////
 }// namespace geninfo

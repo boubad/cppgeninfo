@@ -21,8 +21,8 @@ namespace geninfo {
 		virtual Value remove_doc(const Value &doc);
 		virtual Value read_docs_range(const std::string &startkey, const std::string &endkey,
 			int skip = 0, int limit = 0, bool bDoc = false);
-		virtual Value read_docs_array(const std::vector<std::string> ids);
-		virtual Value maintains_docs(const std::vector<Value> docs, bool bDelete = false);
+		virtual Value read_docs_array(const std::vector<std::string> &ids);
+		virtual Value maintains_docs(const std::vector<Value> &docs, bool bDelete = false);
 	private:
 		std::string m_baseurl;
 		std::string m_database;

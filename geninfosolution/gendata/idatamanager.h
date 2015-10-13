@@ -14,8 +14,8 @@ namespace geninfo {
 		virtual Value remove_doc(const Value &doc) = 0;
 		virtual Value read_docs_range(const std::string &startkey, const std::string &endkey,
 			int skip = 0, int limit = 0, bool bDoc = false) = 0;
-		virtual Value read_docs_array(const std::vector<std::string> ids) = 0;
-		virtual Value maintains_docs(const std::vector<Value> docs, bool bDelete = false) = 0;
+		virtual Value read_docs_array(const std::vector<std::string> &ids) = 0;
+		virtual Value maintains_docs(const std::vector<Value> &docs, bool bDelete = false) = 0;
 	};// class IDataManager
 	  ////////////////////////////////////
 }// namespace geninfo
