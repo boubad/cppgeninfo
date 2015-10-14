@@ -39,6 +39,18 @@
     <ClInclude Include="iservicefactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="baseitem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="siglenameditem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="departement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="itemfactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -51,6 +63,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="basedoc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="baseitem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="siglenameditem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="departement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="itemfactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

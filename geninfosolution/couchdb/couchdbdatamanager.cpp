@@ -830,6 +830,27 @@ namespace geninfo {
 		catch (...) {}
 		return oRet;
 	}
+	std::vector<std::string> CouchDBDataManager::read_docs_ids_range(const std::string &startkey, const std::string &endkey,
+		int skip /*= 0 */, int limit /*= 0*/) {
+		std::vector<std::string> oRet;
+		try {
+			string_t url = convert_from_string(this->m_baseurl);
+			string_t db = convert_from_string(this->m_database);
+			string_t s1 = convert_from_string(startkey);
+			string_t s2 = convert_from_string(endkey);
+			AllDocsOptions opts;
+			opts.startkey = s1;
+			opts.endkey = s2;
+			opts.skip = skip;
+			opts.limit = limit;
+			std::vector<string_t> vec = st_docs_ids(url, db, opts).get();
+			for (auto it = vec.begin(); it != vec.end(); ++it) {
+				std::string s = convert_to_string(*it);
+				oRet.push_back(s);
+			}
+		} catch(...){}
+		return oRet;
+	}
 	Value CouchDBDataManager::read_docs_array(const std::vector<std::string> &ids) {
 		Value oRet;
 		try {

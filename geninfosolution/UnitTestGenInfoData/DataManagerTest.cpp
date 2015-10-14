@@ -97,6 +97,20 @@ namespace UnitTestGenUtils
 			string s = val.to_string();
 			Logger::WriteMessage(s.c_str());
 		}//TestGetAllDocs
+		TEST_METHOD(TestGetAllDocsIds)
+		{
+			IDataManager *pMan = m_man.get();
+			Assert::IsNotNull(pMan);
+			string start;
+			string end;
+			end += "zzz";
+			vector<string> oVec = pMan->read_docs_ids_range(start, end);
+			for (auto it = oVec.begin(); it != oVec.end(); ++it) {
+				string s = *it;
+				string ss = s + std::string("\r\n");
+				Logger::WriteMessage(ss.c_str());
+			}
+		}//TestGetAllDocsIds
 		TEST_METHOD(TestInsertUpdateDoc)
 		{
 			IDataManager *pMan = m_man.get();
