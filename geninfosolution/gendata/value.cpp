@@ -28,6 +28,10 @@ namespace geninfo
 	{
 		return std::make_shared<Array>();
 	}
+	Value Value::create_object_value(void) {
+		PObject o = create_object();
+		return Value(o);
+	}
 	/////////////////
 	Value::Value() :m_type(value_type::null_type)
 	{

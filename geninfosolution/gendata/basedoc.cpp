@@ -272,9 +272,9 @@ namespace geninfo
 		return (!this->_status.empty()) && (this->_status == STRING_DELETED2);
 	}
 	//////////////////////////////////
-	BaseDoc::BaseDoc()
+	BaseDoc::BaseDoc():m_val(Value::create_object_value())
 	{
-		//ctor
+		
 	}
 	BaseDoc::BaseDoc(const Value &oMap) :m_val(oMap)
 	{
@@ -336,7 +336,7 @@ namespace geninfo
 		if (this->m_val.is_object())
 		{
 			Object *p = this->m_val.as_object();
-			bRet = ((p != nullptr) && (!p->is_empty()));
+			bRet = ((p != nullptr) && (p->is_empty()));
 		}
 		return bRet;
 	}

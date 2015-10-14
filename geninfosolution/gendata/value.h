@@ -35,6 +35,7 @@ namespace geninfo
 	public:
 		static PObject create_object(void);
 		static PArray create_array(void);
+		static Value create_object_value(void);
 	public:
 		Value();
 		explicit Value(bool b);

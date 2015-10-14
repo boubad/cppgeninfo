@@ -123,4 +123,9 @@ namespace geninfo
 		Value m_val;
 	};
 }// geninfo
+///////////////////////////////////////////
+inline std::ostream & operator<<(std::ostream &os, const geninfo::BaseDoc &doc) {
+	return doc.write_to(os);
+}
+///////////////////////////////////////
 #endif // __BASEDOC_H__
