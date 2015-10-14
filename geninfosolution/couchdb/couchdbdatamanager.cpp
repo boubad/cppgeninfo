@@ -49,6 +49,8 @@ namespace geninfo {
 	const utility::string_t STRING_DOC = U("doc");
 	const utility::string_t STRING_BULK_DOCS = U("_bulk_docs");
 	const utility::string_t STRING_DELETED = U("_deleted");
+	const utility::string_t STRING_DELETED2 = U("deleted");
+	const utility::string_t STRING_ROWS = U("rows");
 	/////////////////////////////////////////////
 	const std::string STRING_ID_NATIVE("_id");
 	////////////////////////////////////////////
@@ -393,9 +395,11 @@ namespace geninfo {
 				for (auto it = vv.begin(); it != vv.end(); ++it) {
 					const value &vx = *it;
 					if ((!vx.is_null()) && vx.is_object() && vx.has_field(STRING_ID2)) {
-						string_t s = (vx.at(STRING_ID2)).as_string();
-						if (!s.empty()) {
-							oRet.push_back(s);
+						if (!vx.has_field(STRING_DELETED2)) {
+							string_t s = (vx.at(STRING_ID2)).as_string();
+							if (!s.empty()) {
+								oRet.push_back(s);
+							}
 						}
 					}
 				}// it
@@ -412,7 +416,9 @@ namespace geninfo {
 		http_client client(baseUrl);
 		http_request request(methods::GET);
 		request.headers().add(ACCEPT_STRING, APPLICATION_JSON_STRING);
-		string_t sreq = options.to_query_string();
+		AllDocsOptions opts(options);
+		opts.include_docs = true;
+		string_t sreq = opts.to_query_string();
 		if (!sreq.empty()) {
 			uri = uri + sreq;
 		}
@@ -427,7 +433,24 @@ namespace geninfo {
 		}).then([=](task<value> previousTask) {
 			value oRet;
 			try {
-				oRet = previousTask.get();
+				std::vector<value> ovec;
+				value vr = previousTask.get();
+				if ((!vr.is_null()) && vr.is_object() && vr.has_field(STRING_ROWS)) {
+					const value &va = vr[STRING_ROWS];
+					if (va.is_array()) {
+						array oar = va.as_array();
+						for (auto it = oar.begin(); it != oar.end(); ++it) {
+							value vz = *it;
+							if (vz.is_object() && (!vz.has_field(STRING_DELETED2)) && vz.has_field(STRING_DOC)) {
+								value  vo = vz[STRING_DOC];
+								if ((!vo.is_null()) && vo.is_object()) {
+									ovec.push_back(vo);
+								}
+							}
+						}// it
+					}
+				}// vr
+				oRet = value::array(ovec);
 			}
 			catch (std::exception &ex) {
 				throw ex;
@@ -503,7 +526,24 @@ namespace geninfo {
 		}).then([=](task<value> previousTask) {
 			value oRet;
 			try {
-				oRet = previousTask.get();
+				std::vector<value> ovec;
+				value vr = previousTask.get();
+				if ((!vr.is_null()) && vr.is_object() && vr.has_field(STRING_ROWS)) {
+					const value &va = vr[STRING_ROWS];
+					if (va.is_array()) {
+						array oar = va.as_array();
+						for (auto it = oar.begin(); it != oar.end(); ++it) {
+							value vz = *it;
+							if (vz.is_object() && (!vz.has_field(STRING_DELETED2)) && vz.has_field(STRING_DOC)) {
+								value  vo = vz[STRING_DOC];
+								if ((!vo.is_null()) && vo.is_object()) {
+									ovec.push_back(vo);
+								}
+							}
+						}// it
+					}
+				}// vr
+				oRet = value::array(ovec);
 			}
 			catch (std::exception &ex) {
 				throw ex;

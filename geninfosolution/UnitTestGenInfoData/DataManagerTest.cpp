@@ -178,7 +178,7 @@ namespace UnitTestGenUtils
 			Logger::WriteMessage(s.c_str());
 			val = pMan->maintains_docs(docs, true);
 			s = val.to_string();
-			Logger::WriteMessage(s.c_str());
+		   Logger::WriteMessage(s.c_str());
 		}//TestBulkMaintains
 		TEST_METHOD(TestReadArray)
 		{
