@@ -70,23 +70,55 @@ namespace UnitTestGenUtils
 		TEST_METHOD(TestDepartementSaveLoadRemove)
 		{
 			Departement p;
-			p.id("testid");
 			p.sigle("testsigle");
 			p.name("testname");
 			p.status("teststatus");
 			p.description("testdesc");
+			p.check_id();
+			string id = p.id();
 			//
 			IDataManager *pMan = m_man.get();
 			Assert::IsNotNull(pMan);
 			bool bRet = p.save(*pMan);
 			Assert::IsTrue(bRet);
 			Departement px;
-			px.id("testid");
+			px.id(id);
 			bRet = px.load(*pMan);
 			Assert::IsTrue(bRet);
 			bRet = p.remove(*pMan);
 			Assert::IsTrue(bRet);
 		}//TestDepartementSaveLoadRemove
+		TEST_METHOD(TestDepartementGetAll)
+		{
+			Departement p;
+			p.sigle("testsigle1");
+			p.name("testname1");
+			p.status("teststatus1");
+			p.description("testdesc1");
+			//
+			IDataManager *pMan = m_man.get();
+			Assert::IsNotNull(pMan);
+			bool bRet = p.save(*pMan);
+			Assert::IsTrue(bRet);
+			Departement px;
+			px.sigle("testsigle2");
+			px.name("testname2");
+			px.status("teststatus2");
+			px.description("testdesc2");
+			bRet = px.save(*pMan);
+			Assert::IsTrue(bRet);
+			//
+			vector<PDepartement> vec = Departement::get_all_departements(*pMan);
+			size_t n = vec.size();
+			Assert::IsTrue(n >= 2);
+			for (size_t i = 0; i < n; ++i) {
+				PDepartement o = vec[i];
+				Departement *pz = o.get();
+				Assert::IsNotNull(pz);
+				string s = pz->to_string() + "\r\n";
+				Logger::WriteMessage(s.c_str());
+			}// i
+		}//TestDepartementGetAll
 	};
 	string DepartementTest::m_baseUrl("http://localhost:5984");
 	string DepartementTest::m_database("test");
