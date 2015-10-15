@@ -21,7 +21,13 @@ namespace UnitTestGenUtils
 		{
 			CouchServiceFactory oFact;
 			m_man = oFact.get_datamanager(m_baseUrl, m_database);
-			Assert::IsNotNull(m_man.get());
+			IDataManager *pMan = m_man.get();
+			Assert::IsNotNull(pMan);
+			bool bRet = pMan->exists_database(m_database);
+			if (!bRet) {
+				Value vr = pMan->create_database(m_database);
+				Assert::IsTrue(vr.is_object());
+			}
 		}
 		TEST_CLASS_CLEANUP(ClassCleanup)
 		{

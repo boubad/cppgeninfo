@@ -32,7 +32,8 @@ namespace geninfo
 #endif
 	}
 	extern string_t convert_from_string(const std::string &s) {
-		return utility::conversions::to_string_t(s);
+		auto temp = utility::conversions::latin1_to_utf16(s);
+		return utility::conversions::to_string_t(temp);
 	}
 	///////////////////////////
 	namespace

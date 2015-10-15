@@ -6,6 +6,9 @@
 /////////////////////////////////
 namespace geninfo {
 	class Departement;
+	class Groupe;
+	class Unite;
+	//////////////////////////
 	typedef std::shared_ptr<Departement> PDepartement;
 	////////////////////////////////
 	class Departement : public SigleNamedItem
@@ -20,6 +23,9 @@ namespace geninfo {
 		~Departement();
 	public:
 		virtual std::string store_prefix(void) const;
+	public:
+		std::vector<std::shared_ptr<Groupe>> groupes(IDataManager &oMan);
+		std::vector<std::shared_ptr<Unite>> unites(IDataManager &oMan);
 	};
 }// namespace geninfo
 ///////////////////////////

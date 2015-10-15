@@ -21,6 +21,9 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TestFixture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -30,6 +33,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DepartementTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestFixture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestFixtureTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

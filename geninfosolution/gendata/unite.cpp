@@ -10,10 +10,12 @@ namespace geninfo {
 		this->modified(false);
 	}
 	Unite::Unite(const Value &oMap) :DepSigleNamedItem(oMap) {
-
+		this->type(DomainConstants::UNITE_TYPE);
+		this->modified(false);
 	}
 	Unite::Unite(const Departement &oDep) : DepSigleNamedItem(oDep) {
-
+		this->type(DomainConstants::UNITE_TYPE);
+		this->modified(false);
 	}
 	Unite::Unite(const Unite &other) : DepSigleNamedItem(other) {
 
