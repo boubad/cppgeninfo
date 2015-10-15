@@ -35,7 +35,7 @@ namespace geninfo {
 		this->set_string(DomainConstants::NAME, format_name(s));
 	}
 	std::string SigleNamedItem::create_id(void) const {
-		return (this->store_prefix() + this->sigle());
+		return (this->start_key() + this->sigle());
 	}
 	bool SigleNamedItem::is_storeable(void) const {
 		std::string s1 = this->sigle();

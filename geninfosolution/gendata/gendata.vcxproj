@@ -148,20 +148,25 @@
     <ClInclude Include="basedoc.h" />
     <ClInclude Include="baseitem.h" />
     <ClInclude Include="departement.h" />
+    <ClInclude Include="depsiglenameditem.h" />
     <ClInclude Include="domainconstants.h" />
+    <ClInclude Include="groupe.h" />
     <ClInclude Include="idatamanager.h" />
     <ClInclude Include="iservicefactory.h" />
     <ClInclude Include="itemfactory.h" />
     <ClInclude Include="siglenameditem.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="unite.h" />
     <ClInclude Include="value.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="basedoc.cpp" />
     <ClCompile Include="baseitem.cpp" />
     <ClCompile Include="departement.cpp" />
+    <ClCompile Include="depsiglenameditem.cpp" />
     <ClCompile Include="domainconstants.cpp" />
+    <ClCompile Include="groupe.cpp" />
     <ClCompile Include="itemfactory.cpp" />
     <ClCompile Include="siglenameditem.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -170,6 +175,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="unite.cpp" />
     <ClCompile Include="value.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

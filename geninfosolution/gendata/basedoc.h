@@ -103,10 +103,6 @@ namespace geninfo
 		Value *at(const std::string &key) const;
 		void remove(const std::string &key);
 		std::set<std::string> keys(void) const;
-		void set_bool(const std::string &key, bool b);
-		void set_int(const std::string &key, int b);
-		void set_double(const std::string &key, double b);
-		void set_string(const std::string &key, std::string b);
 		Array *set_array(const std::string &key);
 		Object *set_object(const std::string &key);
 		//
@@ -119,6 +115,11 @@ namespace geninfo
 		//
 		std::ostream & write_to(std::ostream &os) const;
 		std::string to_string(void) const;
+	public:
+		virtual void set_bool(const std::string &key, bool b);
+		virtual void set_int(const std::string &key, int b);
+		virtual void set_double(const std::string &key, double b);
+		virtual void set_string(const std::string &key, std::string b);
 	protected:
 		Value m_val;
 	};

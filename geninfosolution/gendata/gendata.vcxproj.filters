@@ -51,6 +51,15 @@
     <ClInclude Include="itemfactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="depsiglenameditem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="groupe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="unite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -75,6 +84,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="itemfactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="depsiglenameditem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="groupe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="unite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

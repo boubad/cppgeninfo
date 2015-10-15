@@ -2,6 +2,8 @@
 #include "itemfactory.h"
 #include "domainconstants.h"
 #include "departement.h"
+#include "groupe.h"
+#include "unite.h"
 //////////////////////////////
 namespace geninfo {
 	ItemFactory::ItemFactory()
@@ -31,8 +33,19 @@ namespace geninfo {
 						*pOk = true;
 					}
 					oRet.reset(new Departement(oMap));
+				} else if (stype == DomainConstants::GROUPE_TYPE) {
+					if (pOk != nullptr) {
+						*pOk = true;
+					}
+					oRet.reset(new Groupe(oMap));
 				}
-			}
+				else if (stype == DomainConstants::UNITE_TYPE) {
+					if (pOk != nullptr) {
+						*pOk = true;
+					}
+					oRet.reset(new Unite(oMap));
+				}
+			}// object
 		}// object
 		return oRet;
 	}

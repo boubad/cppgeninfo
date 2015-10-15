@@ -28,23 +28,65 @@ namespace geninfo {
 		}
 	}
 	/////////////////////////////////
-	BaseItem::BaseItem() {
+	BaseItem::BaseItem():m_modified(false),m_selected(false) {
 
 	}
-	BaseItem::BaseItem(const Value &oMap) :BaseDoc(oMap) {
+	BaseItem::BaseItem(const Value &oMap) :BaseDoc(oMap), m_modified(false), m_selected(false) {
 
 	}
-	BaseItem::BaseItem(const BaseItem &other) : BaseDoc(other) {
+	BaseItem::BaseItem(const BaseItem &other) : BaseDoc(other), m_modified(other.m_modified), m_selected(other.m_selected) {
 
 	}
 	BaseItem &  BaseItem::operator=(const BaseItem &other) {
 		if (this != &other) {
 			BaseDoc::operator=(other);
+			this->m_modified = other.m_modified;
+			this->m_selected = other.m_selected;
 		}
 		return (*this);
 	}
 	BaseItem::~BaseItem() {
 
+	}
+	bool BaseItem::modified(void) const {
+		return (this->m_modified);
+	}
+	void BaseItem::modified(bool b) {
+		this->m_modified = b;
+	}
+	bool BaseItem::selected(void) const {
+		return (this->m_selected);
+	}
+	void BaseItem::selected(bool b) {
+		this->m_selected = b;
+	}
+	void BaseItem::set_bool(const std::string &key, bool b) {
+		bool bOld = this->get_bool(key);
+		if (bOld != b) {
+			BaseDoc::set_bool(key, b);
+			this->modified(true);
+		}
+	}
+	void BaseItem::set_int(const std::string &key, int b) {
+		int bOld = this->get_int(key);
+		if (bOld != b) {
+			BaseDoc::set_int(key, b);
+			this->modified(true);
+		}
+	}
+	void BaseItem::set_double(const std::string &key, double b) {
+		double bOld = this->get_double(key);
+		if (bOld != b) {
+			BaseDoc::set_double(key, b);
+			this->modified(true);
+		}
+	}
+	void BaseItem::set_string(const std::string &key, std::string b) {
+		std::string bOld = this->get_string(key);
+		if (bOld != b) {
+			BaseDoc::set_string(key, b);
+			this->modified(true);
+		}
 	}
 	std::string  BaseItem::status(void) const {
 		return this->get_string(DomainConstants::STATUS);
@@ -65,7 +107,7 @@ namespace geninfo {
 		return (this->store_prefix());
 	}
 	std::string  BaseItem::create_id(void) const {
-		return (std::string());
+		return (this->start_key());
 	}
 	bool  BaseItem::is_storeable(void) const {
 		std::string s1 = this->type();
@@ -100,6 +142,7 @@ namespace geninfo {
 			Value val = oMan.read_doc(id, true);
 			if (val.is_object()) {
 				this->m_val = val;
+				this->modified(false);
 				bRet = true;
 			}
 		}
@@ -120,6 +163,7 @@ namespace geninfo {
 			if ((pObj != nullptr) && pObj->has_field(STRING_OK)) {
 				if ((bRet = pObj->get_bool(STRING_OK)) == true) {
 					this->rev(pObj->get_string(STRING_REV2));
+					this->modified(false);
 				}
 			}// obj
 		}// vr

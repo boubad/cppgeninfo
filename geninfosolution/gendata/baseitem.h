@@ -21,6 +21,10 @@ namespace geninfo {
 		BaseItem & operator=(const BaseItem &other);
 		virtual ~BaseItem();
 	public:
+		bool modified(void) const;
+		void modified(bool b);
+		bool selected(void) const;
+		void selected(bool b);
 		std::string status(void) const;
 		void status(const std::string &s);
 		std::string description(void) const;
@@ -36,11 +40,19 @@ namespace geninfo {
 		virtual bool save(IDataManager &oMan);
 		virtual bool remove(IDataManager &oMan);
 	public:
+		virtual void set_bool(const std::string &key, bool b);
+		virtual void set_int(const std::string &key, int b);
+		virtual void set_double(const std::string &key, double b);
+		virtual void set_string(const std::string &key, std::string b);
+	public:
 		std::string type(void) const;
 		std::string end_key(void) const;
 		void check_id(void);
 	protected:
 		void type(const std::string &s);
+	private:
+		bool m_modified;
+		bool m_selected;
 	}; // class BaseItem
 	///////////////////////////////
 }// name

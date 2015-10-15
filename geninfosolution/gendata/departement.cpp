@@ -28,9 +28,11 @@ namespace geninfo {
 	Departement::Departement()
 	{
 		this->type(DomainConstants::DEPARTEMENT_TYPE);
+		this->modified(false);
 	}
 	Departement::Departement(const Value &oMap):SigleNamedItem(oMap) {
 		this->type(DomainConstants::DEPARTEMENT_TYPE);
+		this->modified(false);
 	}
 	Departement::Departement(const Departement &other):SigleNamedItem(other) {
 
