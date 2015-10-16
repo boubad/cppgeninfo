@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "annee.h"
 #include "domainconstants.h"
+#include "semestre.h"
+#include "idatamanager.h"
 /////////////////////////////
 namespace geninfo {
 	//////////////////////
@@ -53,6 +55,30 @@ namespace geninfo {
 		std::string s2 = this->end_date();
 		return (!s1.empty()) && (!s2.empty()) && (s1 >= s1) &&
 			DepSigleNamedItem::is_storeable();
+	}
+	std::vector<std::shared_ptr<Semestre>> Annee::semestres(IDataManager &oMan) {
+		std::vector<std::shared_ptr<Semestre>> oRet;
+		if (this->has_id()) {
+			Semestre model(*this);
+			std::string start = model.start_key();
+			std::string end = model.end_key();
+			Value vr = oMan.read_docs_range(start, end);
+			if (vr.is_array()) {
+				Array *pAr = vr.as_array();
+				if (pAr != nullptr) {
+					size_t n = pAr->size();
+					for (size_t i = 0; i < n; ++i) {
+						PValue ov = (*pAr)[i];
+						Value *pv = ov.get();
+						if (pv != nullptr) {
+							std::shared_ptr<Semestre> d = std::make_shared<Semestre>(*pv);
+							oRet.push_back(d);
+						}
+					}// i
+				}// pAr
+			}// array
+		}// has_id
+		return oRet;
 	}
 	//////////////////////
 }// namespace geninfo

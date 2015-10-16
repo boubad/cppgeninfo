@@ -226,6 +226,20 @@ namespace UnitTestGenUtils {
 			un.name("Annee 2014-2015");
 			bool bRet = un.save(*pMan);
 			Assert::IsTrue(bRet);
+			Semestre sem1(un);
+			sem1.start_date("2014-09-01");
+			sem1.end_date("2015-01-15");
+			sem1.sigle("S1_S3_2014");
+			sem1.name("S1/S3 2014-2015");
+			bRet = sem1.save(*pMan);
+			Assert::IsTrue(bRet);
+			Semestre sem2(un);
+			sem2.start_date("2015-01-16");
+			sem2.end_date("2015-06-30");
+			sem2.sigle("S2_S4_2015");
+			sem2.name("S2/S4 2014-2015");
+			bRet = sem2.save(*pMan);
+			Assert::IsTrue(bRet);
 		}
 		{
 			Annee un(*pDep);

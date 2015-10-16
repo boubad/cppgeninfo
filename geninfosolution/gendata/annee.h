@@ -5,6 +5,7 @@
 #include "depsiglenameditem.h"
 ////////////////////////////////
 namespace geninfo {
+	class Semestre;
 	/////////////////////////////
 	class Annee : public DepSigleNamedItem
 	{
@@ -20,6 +21,7 @@ namespace geninfo {
 		void start_date(const std::string &s);
 		std::string end_date(void) const;
 		void end_date(const std::string &s);
+		std::vector<std::shared_ptr<Semestre>> semestres(IDataManager &oMan);
 	public:
 		virtual std::string store_prefix(void) const;
 		virtual std::string create_id(void) const;

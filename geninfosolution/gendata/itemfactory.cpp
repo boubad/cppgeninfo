@@ -5,6 +5,7 @@
 #include "groupe.h"
 #include "unite.h"
 #include "annee.h"
+#include "semestre.h"
 //////////////////////////////
 namespace geninfo {
 	ItemFactory::ItemFactory()
@@ -34,7 +35,8 @@ namespace geninfo {
 						*pOk = true;
 					}
 					oRet.reset(new Departement(oMap));
-				} else if (stype == DomainConstants::GROUPE_TYPE) {
+				}
+				else if (stype == DomainConstants::GROUPE_TYPE) {
 					if (pOk != nullptr) {
 						*pOk = true;
 					}
@@ -51,6 +53,12 @@ namespace geninfo {
 						*pOk = true;
 					}
 					oRet.reset(new Annee(oMap));
+				}
+				else if (stype == DomainConstants::SEMESTRE_TYPE) {
+					if (pOk != nullptr) {
+						*pOk = true;
+					}
+					oRet.reset(new Semestre(oMap));
 				}
 			}// object
 		}// object
