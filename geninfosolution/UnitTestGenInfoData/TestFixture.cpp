@@ -10,6 +10,8 @@ namespace UnitTestGenUtils {
 	using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 	using namespace geninfo;
 	using namespace std;
+	////////////////////////////////
+	std::string STRING_OK("ok");
 	//////////////////////////////////
 	TestFixture::TestFixture():m_baseUrl("http://localhost:5984"),m_databaseName("test")
 	{
@@ -37,6 +39,11 @@ namespace UnitTestGenUtils {
 			if (!bRet) {
 				Value vr = pRet->create_database(this->m_databaseName);
 				Assert::IsTrue(vr.is_object());
+				Object *pObj = vr.as_object();
+				Assert::IsNotNull(pObj);
+				Assert::IsTrue(pObj->has_field(STRING_OK));
+				bRet = pObj->get_bool(STRING_OK);
+				Assert::IsTrue(bRet);
 			}
 		}
 		return pRet;
@@ -199,5 +206,38 @@ namespace UnitTestGenUtils {
 		this->m_groupes = pDep->groupes(*pMan);
 		return (this->m_groupes);
 	}// groupes
+	std::vector<std::shared_ptr<geninfo::Annee>> &TestFixture::annees(void) {
+		if (!this->m_annees.empty()) {
+			return this->m_annees;
+		}
+		IDataManager *pMan = this->dataManager();
+		Assert::IsNotNull(pMan);
+		Departement *pDep = this->departement();
+		Assert::IsNotNull(pDep);
+		this->m_annees = pDep->annees(*pMan);
+		if (this->m_annees.size() >= 2) {
+			return this->m_annees;
+		}
+		{
+			Annee un(*pDep);
+			un.start_date("2014-09-01");
+			un.end_date("2015-06-30");
+			un.sigle("2014_2015");
+			un.name("Annee 2014-2015");
+			bool bRet = un.save(*pMan);
+			Assert::IsTrue(bRet);
+		}
+		{
+			Annee un(*pDep);
+			un.start_date("2015-09-01");
+			un.end_date("2016-06-30");
+			un.sigle("2015_2016");
+			un.name("Annee 2015-2016");
+			bool bRet = un.save(*pMan);
+			Assert::IsTrue(bRet);
+		}
+		this->m_annees = pDep->annees(*pMan);
+		return (this->m_annees);
+	}// annees
 	////////////////////////////////
 } // namespace UnitTestGenUtils 

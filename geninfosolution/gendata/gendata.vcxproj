@@ -145,6 +145,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="annee.h" />
     <ClInclude Include="basedoc.h" />
     <ClInclude Include="baseitem.h" />
     <ClInclude Include="departement.h" />
@@ -161,6 +162,7 @@
     <ClInclude Include="value.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="annee.cpp" />
     <ClCompile Include="basedoc.cpp" />
     <ClCompile Include="baseitem.cpp" />
     <ClCompile Include="departement.cpp" />

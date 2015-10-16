@@ -4,6 +4,7 @@
 #include "idatamanager.h"
 #include "unite.h"
 #include "groupe.h"
+#include "annee.h"
 //////////////////////////////
 namespace geninfo {
 	//////////////////////////////////////
@@ -92,6 +93,30 @@ namespace geninfo {
 						Value *pv = ov.get();
 						if (pv != nullptr) {
 							std::shared_ptr<Unite> d = std::make_shared<Unite>(*pv);
+							oRet.push_back(d);
+						}
+					}// i
+				}// pAr
+			}// array
+		}// has_id
+		return oRet;
+	}
+	std::vector<std::shared_ptr<Annee>> Departement::annees(IDataManager &oMan) {
+		std::vector<std::shared_ptr<Annee>> oRet;
+		if (this->has_id()) {
+			Annee model(*this);
+			std::string start = model.start_key();
+			std::string end = model.end_key();
+			Value vr = oMan.read_docs_range(start, end);
+			if (vr.is_array()) {
+				Array *pAr = vr.as_array();
+				if (pAr != nullptr) {
+					size_t n = pAr->size();
+					for (size_t i = 0; i < n; ++i) {
+						PValue ov = (*pAr)[i];
+						Value *pv = ov.get();
+						if (pv != nullptr) {
+							std::shared_ptr<Annee> d = std::make_shared<Annee>(*pv);
 							oRet.push_back(d);
 						}
 					}// i

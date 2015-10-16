@@ -8,6 +8,7 @@ namespace geninfo {
 	class Departement;
 	class Groupe;
 	class Unite;
+	class Annee;
 	//////////////////////////
 	typedef std::shared_ptr<Departement> PDepartement;
 	////////////////////////////////
@@ -26,6 +27,7 @@ namespace geninfo {
 	public:
 		std::vector<std::shared_ptr<Groupe>> groupes(IDataManager &oMan);
 		std::vector<std::shared_ptr<Unite>> unites(IDataManager &oMan);
+		std::vector<std::shared_ptr<Annee>> annees(IDataManager &oMan);
 	};
 }// namespace geninfo
 ///////////////////////////

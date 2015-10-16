@@ -8,6 +8,7 @@
 #include <departement.h>
 #include <groupe.h>
 #include <unite.h>
+#include <annee.h>
 ///////////////////////////
 namespace UnitTestGenUtils {
 	///////////////////////////////
@@ -24,6 +25,7 @@ namespace UnitTestGenUtils {
 		geninfo::Departement *departement(void);
 		std::vector<std::shared_ptr<geninfo::Unite>> &unites(void);
 		std::vector<std::shared_ptr<geninfo::Groupe>>& groupes(void);
+		std::vector<std::shared_ptr<geninfo::Annee>>& annees(void);
 	private:
 		std::string m_baseUrl;
 		std::string m_databaseName;
@@ -31,6 +33,7 @@ namespace UnitTestGenUtils {
 		std::shared_ptr<geninfo::Departement> m_departement;
 		std::vector<std::shared_ptr<geninfo::Unite>> m_unites;
 		std::vector<std::shared_ptr<geninfo::Groupe>> m_groupes;
+		std::vector<std::shared_ptr<geninfo::Annee>> m_annees;
 	}; // class TestFixture
 } // namespaceUnitTestGenUtils
 /////////////////////
