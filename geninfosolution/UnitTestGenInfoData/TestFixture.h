@@ -10,6 +10,7 @@
 #include <unite.h>
 #include <annee.h>
 #include <semestre.h>
+#include <matiere.h>
 ///////////////////////////
 namespace UnitTestGenUtils {
 	///////////////////////////////

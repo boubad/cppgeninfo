@@ -5,6 +5,7 @@
 #include "depsiglenameditem.h"
 //////////////////////////////
 namespace geninfo {
+	class Matiere;
 	/////////////////////////////
 	class Unite : public DepSigleNamedItem
 	{
@@ -20,6 +21,8 @@ namespace geninfo {
 		void order(int n);
 	public:
 		virtual std::string store_prefix(void) const;
+	public:
+		std::vector<std::shared_ptr<Matiere>> matieres(IDataManager &oMan);
 	};
 }// namespace gebinfo
 #endif //  __UNITE_H__

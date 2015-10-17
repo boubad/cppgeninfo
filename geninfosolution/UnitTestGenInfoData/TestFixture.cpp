@@ -89,6 +89,14 @@ namespace UnitTestGenUtils {
 			un.order(1);
 			bool bRet = un.save(*pMan);
 			Assert::IsTrue(bRet);
+			Matiere mat(un);
+			mat.genre("theorie");
+			mat.sigle("optique");
+			mat.name("optique");
+			mat.order(1);
+			mat.coefficient(2.0);
+			bRet = mat.save(*pMan);
+			Assert::IsTrue(bRet);
 		}
 		{
 			Unite un(*pDep);
@@ -97,6 +105,14 @@ namespace UnitTestGenUtils {
 			un.order(2);
 			bool bRet = un.save(*pMan);
 			Assert::IsTrue(bRet);
+			Matiere mat(un);
+			mat.genre("theorie");
+			mat.sigle("thloc");
+			mat.name("Thermique des locaux");
+			mat.order(2);
+			mat.coefficient(3.0);
+			bRet = mat.save(*pMan);
+			Assert::IsTrue(bRet);
 		}
 		{
 			Unite un(*pDep);
@@ -104,6 +120,14 @@ namespace UnitTestGenUtils {
 			un.name("Formation generale");
 			un.order(3);
 			bool bRet = un.save(*pMan);
+			Assert::IsTrue(bRet);
+			Matiere mat(un);
+			mat.genre("parique");
+			mat.sigle("tpinfo");
+			mat.name("TP Informatique");
+			mat.order(3);
+			mat.coefficient(4.0);
+			bRet = mat.save(*pMan);
 			Assert::IsTrue(bRet);
 		}
 		{

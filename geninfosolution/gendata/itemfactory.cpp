@@ -6,6 +6,7 @@
 #include "unite.h"
 #include "annee.h"
 #include "semestre.h"
+#include "matiere.h"
 //////////////////////////////
 namespace geninfo {
 	ItemFactory::ItemFactory()
@@ -59,6 +60,12 @@ namespace geninfo {
 						*pOk = true;
 					}
 					oRet.reset(new Semestre(oMap));
+				}
+				else if (stype == DomainConstants::MATIERE_TYPE) {
+					if (pOk != nullptr) {
+						*pOk = true;
+					}
+					oRet.reset(new Matiere(oMap));
 				}
 			}// object
 		}// object

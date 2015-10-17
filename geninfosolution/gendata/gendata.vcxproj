@@ -155,6 +155,7 @@
     <ClInclude Include="idatamanager.h" />
     <ClInclude Include="iservicefactory.h" />
     <ClInclude Include="itemfactory.h" />
+    <ClInclude Include="matiere.h" />
     <ClInclude Include="semestre.h" />
     <ClInclude Include="siglenameditem.h" />
     <ClInclude Include="stdafx.h" />
@@ -171,6 +172,7 @@
     <ClCompile Include="domainconstants.cpp" />
     <ClCompile Include="groupe.cpp" />
     <ClCompile Include="itemfactory.cpp" />
+    <ClCompile Include="matiere.cpp" />
     <ClCompile Include="semestre.cpp" />
     <ClCompile Include="siglenameditem.cpp" />
     <ClCompile Include="stdafx.cpp">

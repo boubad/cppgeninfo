@@ -66,6 +66,9 @@
     <ClInclude Include="semestre.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="matiere.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -105,6 +108,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="semestre.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="matiere.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
