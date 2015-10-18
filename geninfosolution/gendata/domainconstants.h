@@ -111,6 +111,7 @@ namespace geninfo
 		static const std::string ETUDIANT_PREFIX;
 		static const std::string ENSEIGNANT_PREFIX;
 		static const std::string ADMINISTRATOR_PREFIX;
+		static const std::string PERSONID;
 		//
 		static const std::string ROLES;
 		static const std::string ROLE_SUPER;
@@ -118,6 +119,7 @@ namespace geninfo
 		static const std::string ROLE_PROF;
 		static const std::string ROLE_ETUD;
 		static const std::string ROLE_GUEST;
+		static const std::string SUPER_USERNAME;
 	};
 }// namespace geninfo
 #endif // __DOMAINCONSTANTS_H__

@@ -7,6 +7,10 @@
 #include "annee.h"
 #include "semestre.h"
 #include "matiere.h"
+#include "person.h"
+#include "etudiant.h"
+#include "enseignant.h"
+#include "administrator.h"
 //////////////////////////////
 namespace geninfo {
 	ItemFactory::ItemFactory()
@@ -66,6 +70,30 @@ namespace geninfo {
 						*pOk = true;
 					}
 					oRet.reset(new Matiere(oMap));
+				}
+				else if (stype == DomainConstants::PERSON_TYPE) {
+					if (pOk != nullptr) {
+						*pOk = true;
+					}
+					oRet.reset(new Person(oMap));
+				}
+				else if (stype == DomainConstants::ETUDIANT_TYPE) {
+					if (pOk != nullptr) {
+						*pOk = true;
+					}
+					oRet.reset(new Etudiant(oMap));
+				}
+				else if (stype == DomainConstants::ENSEIGNANT_TYPE) {
+					if (pOk != nullptr) {
+						*pOk = true;
+					}
+					oRet.reset(new Enseignant(oMap));
+				}
+				else if (stype == DomainConstants::ADMINISTRATOR_TYPE) {
+					if (pOk != nullptr) {
+						*pOk = true;
+					}
+					oRet.reset(new Administrator(oMap));
 				}
 			}// object
 		}// object

@@ -63,7 +63,7 @@ namespace geninfo {
 		oPers.check_id();
 		std::string id = oPers.id();
 		if (id.empty()) {
-			Value v = oMan.read_doc(id,true);
+			Value v = oMan.read_doc(id, true);
 			if (v.is_object()) {
 				Object *pObj = v.as_object();
 				if (pObj != nullptr) {
@@ -74,6 +74,26 @@ namespace geninfo {
 				}// pObj
 			}
 		}
+		return oRet;
+	}
+	std::vector<std::shared_ptr<Person>> Person::get_all_persons(IDataManager &oMan, int skip /* = 0 */, int count /*= 10*/) {
+		std::vector<std::shared_ptr<Person>> oRet;
+		Person model;
+		Value vr = oMan.read_docs_range(model.start_key(), model.end_key(),skip,count);
+		if (vr.is_array()) {
+			Array *pAr = vr.as_array();
+			if (pAr != nullptr) {
+				size_t n = pAr->size();
+				for (size_t i = 0; i < n; ++i) {
+					PValue ov = (*pAr)[i];
+					Value *pv = ov.get();
+					if (pv != nullptr) {
+						std::shared_ptr<Person> d = std::make_shared<Person>(*pv);
+						oRet.push_back(d);
+					}
+				}// i
+			}// pAr
+		}// array
 		return oRet;
 	}
 	Person::Person() {
@@ -156,7 +176,7 @@ namespace geninfo {
 		}// pAr
 		return oRet;
 	}
-	bool Person::add_role(const std::string &depid, std::string &srole) {
+	bool Person::add_role(const std::string &depid, const std::string &srole) {
 		std::string role = to_lower(trim(srole));
 		if (depid.empty() || role.empty()) {
 			return false;
@@ -229,7 +249,7 @@ namespace geninfo {
 			pAr->append_string(ss);
 		}
 	}
-	
+
 	std::set<std::string> Person::semestreids(void) const {
 		std::set<std::string> oRet;
 		Array *pAr = this->get_array(DomainConstants::SEMESTRESIDS);
@@ -452,6 +472,73 @@ namespace geninfo {
 	}
 	std::string Person::text(void) const {
 		return this->fullname();
+	}
+	///////////////////////////
+	std::string Person::dossier(void) const {
+		return this->get_string(DomainConstants::DOSSIER);
+	}
+	void Person::dossier(const std::string &s) {
+		this->set_string(DomainConstants::DOSSIER, to_upper(trim(s)));
+	}
+	std::string Person::sexe(void) const {
+		return this->get_string(DomainConstants::SEXE);
+	}
+	void Person::sexe(const std::string &s) {
+		this->set_string(DomainConstants::SEXE, to_upper(trim(s)));
+	}
+	std::string Person::birth_date(void) const {
+		return this->get_string(DomainConstants::BIRTHDATE);
+	}
+	void Person::birth_date(const std::string &s) {
+		this->set_string(DomainConstants::BIRTHDATE, s);
+	}
+	std::string Person::ville(void) const {
+		return this->get_string(DomainConstants::VILLE);
+	}
+	void Person::ville(const std::string &s) {
+		this->set_string(DomainConstants::VILLE, to_upper(trim(s)));
+	}
+	std::string Person::etablissement(void) const {
+		return this->get_string(DomainConstants::ETABLISSEMENT);
+	}
+	void Person::etablissement(const std::string &s) {
+		this->set_string(DomainConstants::ETABLISSEMENT, s);
+	}
+	std::string Person::serie_bac(void) const {
+		return this->get_string(DomainConstants::SERIEBAC);
+	}
+	void Person::serie_bac(const std::string &s) {
+		this->set_string(DomainConstants::SERIEBAC, to_upper(trim(s)));
+	}
+	std::string Person::option_bac(void) const {
+		return this->get_string(DomainConstants::OPTIONBAC);
+	}
+	void Person::option_bac(const std::string &s) {
+		this->set_string(DomainConstants::OPTIONBAC, to_upper(trim(s)));
+	}
+	std::string Person::mention_bac(void) const {
+		return this->get_string(DomainConstants::MENTIONBAC);
+	}
+	void Person::mention_bac(const std::string &s) {
+		this->set_string(DomainConstants::MENTIONBAC, to_upper(trim(s)));
+	}
+	std::string Person::etudes_superieures(void) const {
+		return this->get_string(DomainConstants::ETUDESSUPERIEURES);
+	}
+	void Person::etudes_superieures(const std::string &s) {
+		this->set_string(DomainConstants::ETUDESSUPERIEURES, to_upper(trim(s)));
+	}
+	std::string Person::apb(void) const {
+		return this->get_string(DomainConstants::APB);
+	}
+	void Person::apb(const std::string &s) {
+		this->set_string(DomainConstants::APB, to_upper(trim(s)));
+	}
+	std::string Person::redoublant(void) const {
+		return this->get_string(DomainConstants::REDOUBLANT);
+	}
+	void Person::redoublant(const std::string &s) {
+		this->set_string(DomainConstants::REDOUBLANT, to_upper(trim(s)));
 	}
 	//////////////////////
 }// namespace geninfo

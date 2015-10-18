@@ -3,6 +3,7 @@
 ////////////////////////////////
 namespace geninfo {
 	////////////////////////////
+	const std::string DomainConstants::SUPER_USERNAME("admin");
 	const std::string DomainConstants::TYPE("type");
 	const std::string DomainConstants::ID("_id");
 	const std::string DomainConstants::REV("_rev");
@@ -117,5 +118,7 @@ namespace geninfo {
 	const std::string DomainConstants::ROLE_PROF("prof");
 	const std::string DomainConstants::ROLE_ETUD("etud");
 	const std::string DomainConstants::ROLE_GUEST("guest");
+	//
+	const std::string DomainConstants::PERSONID("personid");
 	//////////////////////////////
 }// namespace geninfo

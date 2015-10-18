@@ -29,6 +29,7 @@ namespace geninfo {
 	{
 	public:
 		static std::shared_ptr<Person> find_by_username(const std::string &suser, IDataManager &oMan);
+		static std::vector<std::shared_ptr<Person>> get_all_persons(IDataManager &oMan, int skip = 0, int count = 10);
 	public:
 		Person();
 		Person(const Value &oMap);
@@ -50,7 +51,7 @@ namespace geninfo {
 		void phone(const std::string &s);
 	public:
 		std::vector<PersonRole> roles(void) const;
-		bool add_role(const std::string &depid, std::string &role);
+		bool add_role(const std::string &depid, const std::string &role);
 		//
 		std::set<std::string> departementids(void) const;
 		void add_anneeid(const std::string &s);
@@ -72,6 +73,29 @@ namespace geninfo {
 		bool check_password(const std::string &cpass) const;
 		void change_password(const std::string &s);
 		void reset_password(void);
+	public:
+		std::string dossier(void) const;
+		void dossier(const std::string &s);
+		std::string sexe(void) const;
+		void sexe(const std::string &s);
+		std::string birth_date(void) const;
+		void birth_date(const std::string &s);
+		std::string ville(void) const;
+		void ville(const std::string &s);
+		std::string etablissement(void) const;
+		void etablissement(const std::string &s);
+		std::string serie_bac(void) const;
+		void serie_bac(const std::string &s);
+		std::string option_bac(void) const;
+		void option_bac(const std::string &s);
+		std::string mention_bac(void) const;
+		void mention_bac(const std::string &s);
+		std::string etudes_superieures(void) const;
+		void etudes_superieures(const std::string &s);
+		std::string apb(void) const;
+		void apb(const std::string &s);
+		std::string redoublant(void) const;
+		void redoublant(const std::string &s);
 	public:
 		virtual std::string store_prefix(void) const;
 		virtual std::string create_id(void) const;

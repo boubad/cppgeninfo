@@ -145,12 +145,16 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="administrator.h" />
     <ClInclude Include="annee.h" />
     <ClInclude Include="basedoc.h" />
     <ClInclude Include="baseitem.h" />
     <ClInclude Include="departement.h" />
+    <ClInclude Include="departementperson.h" />
     <ClInclude Include="depsiglenameditem.h" />
     <ClInclude Include="domainconstants.h" />
+    <ClInclude Include="enseignant.h" />
+    <ClInclude Include="etudiant.h" />
     <ClInclude Include="groupe.h" />
     <ClInclude Include="idatamanager.h" />
     <ClInclude Include="iservicefactory.h" />
@@ -166,12 +170,16 @@
     <ClInclude Include="value.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="administrator.cpp" />
     <ClCompile Include="annee.cpp" />
     <ClCompile Include="basedoc.cpp" />
     <ClCompile Include="baseitem.cpp" />
     <ClCompile Include="departement.cpp" />
+    <ClCompile Include="departementperson.cpp" />
     <ClCompile Include="depsiglenameditem.cpp" />
     <ClCompile Include="domainconstants.cpp" />
+    <ClCompile Include="enseignant.cpp" />
+    <ClCompile Include="etudiant.cpp" />
     <ClCompile Include="groupe.cpp" />
     <ClCompile Include="itemfactory.cpp" />
     <ClCompile Include="matiere.cpp" />

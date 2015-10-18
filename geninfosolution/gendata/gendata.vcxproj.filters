@@ -75,6 +75,18 @@
     <ClInclude Include="md5.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="departementperson.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="etudiant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="enseignant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="administrator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -123,6 +135,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="md5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="departementperson.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="etudiant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="enseignant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="administrator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
