@@ -12,6 +12,8 @@ namespace UnitTestGenUtils {
 	using namespace std;
 	////////////////////////////////
 	std::string STRING_OK("ok");
+	////////////////////////////////
+	size_t TestFixture::st_nb_persons(96);
 	//////////////////////////////////
 	TestFixture::TestFixture():m_baseUrl("http://localhost:5984"),m_databaseName("test")
 	{
@@ -21,6 +23,9 @@ namespace UnitTestGenUtils {
 	}
 	TestFixture::~TestFixture()
 	{
+	}
+	size_t TestFixture::nb_persons(void) const {
+		return st_nb_persons;
 	}
 	std::string TestFixture::baseUrl(void) {
 		return this->m_baseUrl;
@@ -277,5 +282,35 @@ namespace UnitTestGenUtils {
 		this->m_annees = pDep->annees(*pMan);
 		return (this->m_annees);
 	}// annees
+	std::vector<std::shared_ptr<geninfo::Person>> &TestFixture::persons(void) {
+		if (!this->m_persons.empty()) {
+			return this->m_persons;
+		}
+		IDataManager *pMan = this->dataManager();
+		Assert::IsNotNull(pMan);
+		Departement *pDep = this->departement();
+		Assert::IsNotNull(pDep);
+		this->m_persons = Person::get_all_persons(*pMan);
+		size_t nb = this->nb_persons();
+		if (this->m_persons.size() >= nb) {
+			return this->m_persons;
+		}
+		std::vector<Value> docs;
+		for (size_t i = 0; i < nb; ++i) {
+			std::stringstream os;
+			os << (i + 1);
+			std::string si = os.str();
+			Person oPers;
+			oPers.username("user" + si);
+			oPers.lastname("lastname" + si);
+			oPers.firstname("firstname" + si);
+			oPers.reset_password();
+			oPers.check_id();
+			docs.push_back(oPers.value());
+		}// i
+		Value vr = pMan->maintains_docs(docs);
+		this->m_persons = Person::get_all_persons(*pMan);
+		return (this->m_persons);
+	}// persons
 	////////////////////////////////
 } // namespace UnitTestGenUtils 

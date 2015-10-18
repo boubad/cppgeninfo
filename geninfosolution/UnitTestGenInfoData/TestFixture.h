@@ -11,6 +11,10 @@
 #include <annee.h>
 #include <semestre.h>
 #include <matiere.h>
+#include <person.h>
+#include <administrator.h>
+#include <etudiant.h>
+#include <enseignant.h>
 ///////////////////////////
 namespace UnitTestGenUtils {
 	///////////////////////////////
@@ -21,6 +25,7 @@ namespace UnitTestGenUtils {
 		TestFixture(const std::string &baseUrl, const std::string &databaseName);
 		~TestFixture();
 	public:
+		size_t nb_persons(void) const;
 		std::string baseUrl(void);
 		std::string databaseName(void);
 		geninfo::IDataManager *dataManager(void);
@@ -28,6 +33,7 @@ namespace UnitTestGenUtils {
 		std::vector<std::shared_ptr<geninfo::Unite>> &unites(void);
 		std::vector<std::shared_ptr<geninfo::Groupe>>& groupes(void);
 		std::vector<std::shared_ptr<geninfo::Annee>>& annees(void);
+		std::vector<std::shared_ptr<geninfo::Person>>& persons(void);
 	private:
 		std::string m_baseUrl;
 		std::string m_databaseName;
@@ -36,6 +42,9 @@ namespace UnitTestGenUtils {
 		std::vector<std::shared_ptr<geninfo::Unite>> m_unites;
 		std::vector<std::shared_ptr<geninfo::Groupe>> m_groupes;
 		std::vector<std::shared_ptr<geninfo::Annee>> m_annees;
+		std::vector<std::shared_ptr<geninfo::Person>> m_persons;
+	private:
+		static size_t st_nb_persons;
 	}; // class TestFixture
 } // namespaceUnitTestGenUtils
 /////////////////////

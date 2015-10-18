@@ -61,6 +61,14 @@ namespace UnitTestGenUtils
 			size_t n = oVec.size();
 			Assert::IsTrue(n >= 2);
 		} // TestFixtureGetAnnees 
+		TEST_METHOD(TestFixtureGetAllPersons)
+		{
+			TestFixture *p = m_fixture.get();
+			Assert::IsNotNull(p);
+			vector<shared_ptr<Person>> oVec = p->persons();
+			size_t n = oVec.size();
+			Assert::IsTrue(n >= p->nb_persons());
+		} // TestFixtureGetAllPersons
 	};
 	string TestFixtureTest::m_baseUrl("http://localhost:5984");
 	string TestFixtureTest::m_database("test");
