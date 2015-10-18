@@ -111,5 +111,11 @@ namespace geninfo {
 	const std::string DomainConstants::ENSEIGNANT_PREFIX("EN");
 	const std::string DomainConstants::ADMINISTRATOR_PREFIX("AD");
 	///////////////////////////////////////////////////////
+	const std::string DomainConstants::ROLES("roles");
+	const std::string DomainConstants::ROLE_SUPER("super");
+	const std::string DomainConstants::ROLE_ADMIN("admin");
+	const std::string DomainConstants::ROLE_PROF("prof");
+	const std::string DomainConstants::ROLE_ETUD("etud");
+	const std::string DomainConstants::ROLE_GUEST("guest");
 	//////////////////////////////
 }// namespace geninfo
