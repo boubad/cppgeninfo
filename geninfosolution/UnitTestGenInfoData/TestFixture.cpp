@@ -290,8 +290,8 @@ namespace UnitTestGenUtils {
 		Assert::IsNotNull(pMan);
 		Departement *pDep = this->departement();
 		Assert::IsNotNull(pDep);
-		this->m_persons = Person::get_all_persons(*pMan);
 		size_t nb = this->nb_persons();
+		this->m_persons = Person::get_all_persons(*pMan,0,(int)nb);
 		if (this->m_persons.size() >= nb) {
 			return this->m_persons;
 		}
@@ -309,7 +309,7 @@ namespace UnitTestGenUtils {
 			docs.push_back(oPers.value());
 		}// i
 		Value vr = pMan->maintains_docs(docs);
-		this->m_persons = Person::get_all_persons(*pMan);
+		this->m_persons = Person::get_all_persons(*pMan, 0, (int)nb);
 		return (this->m_persons);
 	}// persons
 	////////////////////////////////
