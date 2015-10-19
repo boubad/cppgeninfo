@@ -87,6 +87,18 @@
     <ClInclude Include="administrator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="affectation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="personitem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="etudiantaffectation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="enseignantaffectation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -147,6 +159,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="administrator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="affectation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="personitem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="etudiantaffectation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="enseignantaffectation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

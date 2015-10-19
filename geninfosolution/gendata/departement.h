@@ -9,13 +9,16 @@ namespace geninfo {
 	class Groupe;
 	class Unite;
 	class Annee;
+	class Etudiant;
+	class Enseignant;
+	class Administrator;
 	//////////////////////////
 	typedef std::shared_ptr<Departement> PDepartement;
 	////////////////////////////////
 	class Departement : public SigleNamedItem
 	{
 	public:
-		static std::vector<PDepartement> get_all_departements(IDataManager &oMan);
+		static std::vector<PDepartement> get_all_departements(IDataManager &oMan, int skip = 0, int count = 10);
 	public:
 		Departement();
 		Departement(const Value &oMap);
@@ -28,6 +31,9 @@ namespace geninfo {
 		std::vector<std::shared_ptr<Groupe>> groupes(IDataManager &oMan);
 		std::vector<std::shared_ptr<Unite>> unites(IDataManager &oMan);
 		std::vector<std::shared_ptr<Annee>> annees(IDataManager &oMan);
+		std::vector<std::shared_ptr<Enseignant>> enseignants(IDataManager &oMan, int skip = 0, int count = 10);
+		std::vector<std::shared_ptr<Etudiant>> etudiants(IDataManager &oMan, int skip = 0, int count = 10);
+		std::vector<std::shared_ptr<Administrator>> administrators(IDataManager &oMan, int skip = 0, int count = 10);
 	};
 }// namespace geninfo
 ///////////////////////////

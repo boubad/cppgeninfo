@@ -11,6 +11,8 @@
 #include "etudiant.h"
 #include "enseignant.h"
 #include "administrator.h"
+#include "etudiantaffectation.h"
+#include "enseignantaffectation.h"
 //////////////////////////////
 namespace geninfo {
 	ItemFactory::ItemFactory()
@@ -94,6 +96,18 @@ namespace geninfo {
 						*pOk = true;
 					}
 					oRet.reset(new Administrator(oMap));
+				}
+				else if (stype == DomainConstants::ENSEIGNANTAFFECTATION_TYPE) {
+					if (pOk != nullptr) {
+						*pOk = true;
+					}
+					oRet.reset(new EnseignantAffectation(oMap));
+				}
+				else if (stype == DomainConstants::ETUDIANTAFFECTATION_TYPE) {
+					if (pOk != nullptr) {
+						*pOk = true;
+					}
+					oRet.reset(new EtudiantAffectation(oMap));
 				}
 			}// object
 		}// object

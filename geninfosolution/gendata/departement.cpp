@@ -5,13 +5,17 @@
 #include "unite.h"
 #include "groupe.h"
 #include "annee.h"
+#include "enseignant.h"
+#include "etudiant.h"
+#include "administrator.h"
+#include "person.h"
 //////////////////////////////
 namespace geninfo {
 	//////////////////////////////////////
-	std::vector<PDepartement> Departement::get_all_departements(IDataManager &oMan) {
+	std::vector<PDepartement> Departement::get_all_departements(IDataManager &oMan, int skip /*= 0*/, int count /*= 10*/) {
 		std::vector<PDepartement> oRet;
 		Departement model;
-		Value vr = oMan.read_docs_range(model.start_key(), model.end_key());
+		Value vr = oMan.read_docs_range(model.start_key(), model.end_key(),skip,count);
 		if (vr.is_array()) {
 			Array *pAr = vr.as_array();
 			if (pAr != nullptr) {
@@ -117,6 +121,81 @@ namespace geninfo {
 						Value *pv = ov.get();
 						if (pv != nullptr) {
 							std::shared_ptr<Annee> d = std::make_shared<Annee>(*pv);
+							oRet.push_back(d);
+						}
+					}// i
+				}// pAr
+			}// array
+		}// has_id
+		return oRet;
+	}
+	std::vector<std::shared_ptr<Enseignant>> Departement::enseignants(IDataManager &oMan, int skip /*= 0*/, int count /*= 10*/) {
+		std::vector<std::shared_ptr<Enseignant>> oRet;
+		if (this->has_id()) {
+			Person oPers;
+			 Enseignant model(*this,oPers);
+			std::string start = model.start_key();
+			std::string end = model.end_key();
+			Value vr = oMan.read_docs_range(start, end,skip,count);
+			if (vr.is_array()) {
+				Array *pAr = vr.as_array();
+				if (pAr != nullptr) {
+					size_t n = pAr->size();
+					for (size_t i = 0; i < n; ++i) {
+						PValue ov = (*pAr)[i];
+						Value *pv = ov.get();
+						if (pv != nullptr) {
+							std::shared_ptr<Enseignant> d = std::make_shared<Enseignant>(*pv);
+							oRet.push_back(d);
+						}
+					}// i
+				}// pAr
+			}// array
+		}// has_id
+		return oRet;
+	}
+	std::vector<std::shared_ptr<Etudiant>>  Departement::etudiants(IDataManager &oMan, int skip /*= 0*/, int count /*= 10*/) {
+		std::vector<std::shared_ptr<Etudiant>> oRet;
+		if (this->has_id()) {
+			Person oPers;
+			Etudiant model(*this, oPers);
+			std::string start = model.start_key();
+			std::string end = model.end_key();
+			Value vr = oMan.read_docs_range(start, end, skip, count);
+			if (vr.is_array()) {
+				Array *pAr = vr.as_array();
+				if (pAr != nullptr) {
+					size_t n = pAr->size();
+					for (size_t i = 0; i < n; ++i) {
+						PValue ov = (*pAr)[i];
+						Value *pv = ov.get();
+						if (pv != nullptr) {
+							std::shared_ptr<Etudiant> d = std::make_shared<Etudiant>(*pv);
+							oRet.push_back(d);
+						}
+					}// i
+				}// pAr
+			}// array
+		}// has_id
+		return oRet;
+	}
+	std::vector<std::shared_ptr<Administrator>>  Departement::administrators(IDataManager &oMan, int skip /*= 0*/, int count /*= 10*/) {
+		std::vector<std::shared_ptr<Administrator>> oRet;
+		if (this->has_id()) {
+			Person oPers;
+			Enseignant model(*this, oPers);
+			std::string start = model.start_key();
+			std::string end = model.end_key();
+			Value vr = oMan.read_docs_range(start, end, skip, count);
+			if (vr.is_array()) {
+				Array *pAr = vr.as_array();
+				if (pAr != nullptr) {
+					size_t n = pAr->size();
+					for (size_t i = 0; i < n; ++i) {
+						PValue ov = (*pAr)[i];
+						Value *pv = ov.get();
+						if (pv != nullptr) {
+							std::shared_ptr<Administrator> d = std::make_shared<Administrator>(*pv);
 							oRet.push_back(d);
 						}
 					}// i

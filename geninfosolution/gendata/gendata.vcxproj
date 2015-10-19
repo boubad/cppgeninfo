@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="administrator.h" />
+    <ClInclude Include="affectation.h" />
     <ClInclude Include="annee.h" />
     <ClInclude Include="basedoc.h" />
     <ClInclude Include="baseitem.h" />
@@ -154,7 +155,9 @@
     <ClInclude Include="depsiglenameditem.h" />
     <ClInclude Include="domainconstants.h" />
     <ClInclude Include="enseignant.h" />
+    <ClInclude Include="enseignantaffectation.h" />
     <ClInclude Include="etudiant.h" />
+    <ClInclude Include="etudiantaffectation.h" />
     <ClInclude Include="groupe.h" />
     <ClInclude Include="idatamanager.h" />
     <ClInclude Include="iservicefactory.h" />
@@ -162,6 +165,7 @@
     <ClInclude Include="matiere.h" />
     <ClInclude Include="md5.h" />
     <ClInclude Include="person.h" />
+    <ClInclude Include="personitem.h" />
     <ClInclude Include="semestre.h" />
     <ClInclude Include="siglenameditem.h" />
     <ClInclude Include="stdafx.h" />
@@ -171,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="administrator.cpp" />
+    <ClCompile Include="affectation.cpp" />
     <ClCompile Include="annee.cpp" />
     <ClCompile Include="basedoc.cpp" />
     <ClCompile Include="baseitem.cpp" />
@@ -179,12 +184,15 @@
     <ClCompile Include="depsiglenameditem.cpp" />
     <ClCompile Include="domainconstants.cpp" />
     <ClCompile Include="enseignant.cpp" />
+    <ClCompile Include="enseignantaffectation.cpp" />
     <ClCompile Include="etudiant.cpp" />
+    <ClCompile Include="etudiantaffectation.cpp" />
     <ClCompile Include="groupe.cpp" />
     <ClCompile Include="itemfactory.cpp" />
     <ClCompile Include="matiere.cpp" />
     <ClCompile Include="md5.cpp" />
     <ClCompile Include="person.cpp" />
+    <ClCompile Include="personitem.cpp" />
     <ClCompile Include="semestre.cpp" />
     <ClCompile Include="siglenameditem.cpp" />
     <ClCompile Include="stdafx.cpp">
